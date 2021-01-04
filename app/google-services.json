@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "769800186033",
+    "project_id": "cseat-7e11d",
+    "storage_bucket": "cseat-7e11d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769800186033:android:ea6ec75541394bd6ca9a90",
+        "android_client_info": {
+          "package_name": "com.example.cseat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769800186033-o8f613sm4k6mopfoijp0tv1hbdalo1m3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFyjWy9BWd1ZW3tlt3kmU2a4Mkj2WBa5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769800186033-o8f613sm4k6mopfoijp0tv1hbdalo1m3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
