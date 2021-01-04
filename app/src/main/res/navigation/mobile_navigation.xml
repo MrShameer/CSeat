@@ -31,4 +31,9 @@
         android:name="com.example.cseat.Pelajar"
         android:label="activity_pelajar"
         tools:layout="@layout/activity_pelajar" />
+    <fragment
+        android:id="@+id/tabPelajar2"
+        android:name="com.example.cseat.TabPelajar"
+        android:label="Pelajar"
+        tools:layout="@layout/fragment_tab_pelajar2" />
 </navigation>
