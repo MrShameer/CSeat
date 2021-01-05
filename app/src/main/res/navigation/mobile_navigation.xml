@@ -8,23 +8,23 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.cseat.ui.home.HomeFragment"
-        android:label="Student"
+        android:label="STUDENT"
         tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.cseat.ui.notifications.NotificationsFragment"
-        android:label="Profile"
+        android:label="PROFILE"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/tb"
         android:name="com.example.cseat.TrackerBoard"
-        android:label="Tracker Board"
+        android:label="TRACKER BOARD"
         tools:layout="@layout/fragment_tracker_board" />
     <fragment
         android:id="@+id/abu"
         android:name="com.example.cseat.AboutUs"
-        android:label="About Us"
+        android:label="ABOUT US"
         tools:layout="@layout/fragment_about_us" />
     <activity
         android:id="@+id/tabpelajar"
@@ -34,6 +34,6 @@
     <fragment
         android:id="@+id/tabPelajar2"
         android:name="com.example.cseat.TabPelajar"
-        android:label="Pelajar"
+        android:label="PELAJAR"
         tools:layout="@layout/fragment_tab_pelajar2" />
 </navigation>
