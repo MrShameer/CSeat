@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(user !=null) {
+        /*if(user !=null) {
             // User is signed in
             Intent i = new Intent(LoginActivity.this, QuickAccess.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -40,7 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // User is signed out
             //Log.d(TAG, "onAuthStateChanged:signed_out");
-        }
+        }*/
+
         sgup = findViewById(R.id.signup);
 
         email= findViewById(R.id.textemail);

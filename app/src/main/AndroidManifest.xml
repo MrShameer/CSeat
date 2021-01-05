@@ -12,11 +12,7 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.CSeat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".RegisterActivity"
@@ -32,7 +28,11 @@
             android:name=".QuickAccess"
             android:label="@string/title_activity_quick_access" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
