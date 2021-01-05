@@ -97,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                         //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
                         myRef.child("Email").setValue(em);
                         myRef.child("Username").setValue(un);
+                        myRef.child("Phone").setValue("");
                         //.setValue(un);
 
                         /*UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
