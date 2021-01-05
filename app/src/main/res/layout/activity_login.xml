@@ -24,15 +24,16 @@
         android:id="@+id/acc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="LOGIN"
         android:textColor="#FDFDFD"
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005" />
+        app:layout_constraintTop_toBottomOf="@+id/asguest"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/password"
