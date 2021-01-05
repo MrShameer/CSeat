@@ -8,19 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cseat.ItemListDialogFragment;
 import com.example.cseat.LoginActivity;
 import com.example.cseat.QuickAccess;
 import com.example.cseat.R;
 import com.example.cseat.RegisterActivity;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +47,8 @@ public class NotificationsFragment extends Fragment {
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
     String u,e,p;
+
+    ImageButton pic;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
@@ -51,6 +60,7 @@ public class NotificationsFragment extends Fragment {
         uname=root.findViewById(R.id.uname);
         emil=root.findViewById(R.id.editemail);
         phone=root.findViewById(R.id.phoneno);
+        pic = root.findViewById(R.id.pic);
         mAuth=FirebaseAuth.getInstance();
 
 
@@ -92,8 +102,12 @@ public class NotificationsFragment extends Fragment {
              //   textView.setText(s);
            // }
        // });
+
+
         return root;
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -106,6 +120,20 @@ public class NotificationsFragment extends Fragment {
                 editing=true;
                 uname.setEnabled(true);
                 phone.setEnabled(true);
+            }
+        });
+
+        pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //ItemListDialogFragment fragment = new ItemListDialogFragment();
+                //fragment.show(getActivity().getSupportFragmentManager(), "TAG");
+
+                ItemListDialogFragment bottomSheet = new ItemListDialogFragment();
+                bottomSheet.show(getActivity().getSupportFragmentManager(), "TAG");
+
+                //BottomSheetDialogFragment ModalBottomSheetDialogFragment.Builder() .add(R.layout.fragment_item_list_dialog_list_dialog) .show(childFragmentManager, "my_bottom_sheet")
+
             }
         });
 

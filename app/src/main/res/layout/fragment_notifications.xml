@@ -8,7 +8,7 @@
     tools:context=".ui.notifications.NotificationsFragment">
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/pic"
         android:layout_width="146dp"
         android:layout_height="109dp"
         android:layout_marginStart="32dp"
@@ -42,7 +42,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+        app:layout_constraintTop_toBottomOf="@+id/pic">
 
         <Button
             android:id="@+id/edit"
