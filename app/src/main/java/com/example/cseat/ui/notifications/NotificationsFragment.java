@@ -132,8 +132,15 @@ public class NotificationsFragment extends Fragment {
                 ItemListDialogFragment bottomSheet = new ItemListDialogFragment();
                 bottomSheet.show(getActivity().getSupportFragmentManager(), "TAG");
 
+               /* Fragment fragment = new BottomSheetDialogFragment();
+                fragment.setArguments(arguments);
+                fm.beginTransaction()
+                        .replace(placeholder, fragment, tabId)
+                        .commit();*/
+
                 //BottomSheetDialogFragment ModalBottomSheetDialogFragment.Builder() .add(R.layout.fragment_item_list_dialog_list_dialog) .show(childFragmentManager, "my_bottom_sheet")
 
+                
             }
         });
 
