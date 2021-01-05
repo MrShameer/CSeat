@@ -32,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
-    Button logout;
+    Button logout,edit;
     EditText uname,emil;
     FirebaseAuth mAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -43,6 +43,7 @@ public class NotificationsFragment extends Fragment {
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         logout = root.findViewById(R.id.logout);
+        edit = root.findViewById(R.id.edit);
         uname=root.findViewById(R.id.uname);
         emil=root.findViewById(R.id.editemail);
         mAuth=FirebaseAuth.getInstance();
@@ -52,7 +53,7 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 uname.setText(snapshot.child("Username").getValue(String.class));
-                emil.setText(snapshot.child("Username").getValue(String.class));
+                emil.setText(snapshot.child("Email").getValue(String.class));
             }
 
             @Override
