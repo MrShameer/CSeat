@@ -1,6 +1,5 @@
 package com.example.cseat.ui.main;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -12,9 +11,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.cseat.R;
 import com.example.cseat.SectionPelajar;
 import com.example.cseat.TabPelajar;
-import com.example.cseat.data.model.SectionMaterials;
-import com.example.cseat.ui.notifications.NotificationsFragment;
-import com.example.cseat.ui.notifications.SectionRPI;
+import com.example.cseat.SectionMaterials;
+import com.example.cseat.SectionRPI;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

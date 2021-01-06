@@ -38,12 +38,12 @@
         tools:layout="@layout/fragment_section_pelajar" />
     <fragment
         android:id="@+id/sectionRPI"
-        android:name="com.example.cseat.ui.notifications.SectionRPI"
+        android:name="com.example.cseat.SectionRPI"
         android:label="fragment_section_r_p_i"
         tools:layout="@layout/fragment_section_r_p_i" />
     <fragment
         android:id="@+id/sectionMaterials"
-        android:name="com.example.cseat.data.model.SectionMaterials"
+        android:name="com.example.cseat.SectionMaterials"
         android:label="fragment_section_materials"
         tools:layout="@layout/fragment_section_materials" />
 </navigation>
