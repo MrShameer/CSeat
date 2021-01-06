@@ -98,6 +98,6 @@ public class TabPelajar extends Fragment {
         TabLayout tabs = getView().findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        Toast.makeText(getActivity(),"dfgdfgdf",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"dfgdfgdf",Toast.LENGTH_SHORT).show();
     }
 }
