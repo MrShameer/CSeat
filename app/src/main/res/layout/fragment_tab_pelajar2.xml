@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#444444"
     android:layout_gravity="center_horizontal"
+    android:background="#212121"
     android:gravity="center_horizontal"
     tools:context=".TabPelajar">
 

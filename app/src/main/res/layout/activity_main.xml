@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#444444"
+    android:background="#212121"
     tools:context=".MainActivity">
 
     <ImageView
@@ -45,13 +45,13 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="223dp"
-        android:layout_height="105dp"
+        android:layout_width="264dp"
+        android:layout_height="117dp"
         android:layout_marginTop="24dp"
-        android:background="#CAA503"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/open_sans_semibold"
         android:gravity="center_horizontal"
         android:text="“It's not what we do once in a while that shapes our lives. It's what we do consistently.” ― Anthony Robbins "
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,11 +62,10 @@
         android:layout_width="240dp"
         android:layout_height="27dp"
         android:layout_marginTop="40dp"
-        android:background="#CAA503"
-        android:backgroundTint="#CAA503"
         android:fontFamily="@font/open_sans_bold"
         android:gravity="center_horizontal"
         android:text="Striving for consistency "
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintCircleRadius="10sp"
         app:layout_constraintEnd_toEndOf="parent"
