@@ -1,5 +1,9 @@
 package com.example.cseat;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,10 +14,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * <p>A fragment that shows a list of items as a modal bottom sheet.</p>
@@ -26,7 +34,12 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_ITEM_COUNT = "item_count";
+    private static final int RESULT_OK = -1;
+    // private static final int RESULT_OK = -1;
 
+    TextView takepic,upload;
+    ImageView pic;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
     // TODO: Customize parameters
     public static ItemListDialogFragment newInstance(int itemCount) {
         final ItemListDialogFragment fragment = new ItemListDialogFragment();
@@ -46,11 +59,47 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        pic = view.findViewById(R.id.pic);
+        takepic = view.findViewById(R.id.takepic);
+        upload = view.findViewById(R.id.upload);
+        takepic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                try {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                } catch (ActivityNotFoundException e) {
+                    // display error state to the user
+                }
+            }
+        });
+
+
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         //final RecyclerView recyclerView = (RecyclerView) view;
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //recyclerView.setAdapter(new ItemAdapter(getArguments().getInt(ARG_ITEM_COUNT)));
 
         //recyclerView.setAdapter(new ItemAdapter(getArguments().));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            pic.setImageBitmap(imageBitmap);
+            //pic.setImageBitmap(imageBitmap);
+            //imageView.setImageBitmap(imageBitmap);
+
+        }
     }
 
     private static class ViewHolder extends RecyclerView.ViewHolder {

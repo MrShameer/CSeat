@@ -1,6 +1,8 @@
 package com.example.cseat.ui.notifications;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class NotificationsFragment extends Fragment {
 
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int RESULT_OK = 1;
     private NotificationsViewModel notificationsViewModel;
     Boolean editing=false;
     Button logout,edit,save;
@@ -49,7 +54,7 @@ public class NotificationsFragment extends Fragment {
     DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
     String u,e,p;
 
-    ImageButton pic;
+    ImageView pic;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
@@ -199,5 +204,19 @@ public class NotificationsFragment extends Fragment {
             phone.setEnabled(false);
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Toast.makeText(getActivity(),requestCode + "" + resultCode,Toast.LENGTH_LONG).show();
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            pic.setImageBitmap(imageBitmap);
+            //pic.setImageBitmap(imageBitmap);
+            //imageView.setImageBitmap(imageBitmap);
+
+        }
+    }
+
 
 }
