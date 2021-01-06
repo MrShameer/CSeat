@@ -11,19 +11,16 @@
         android:theme="@style/Theme.CSeat">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.CSeat.NoActionBar">
-
+            android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Theme.CSeat.NoActionBar"/>
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".QuickAccess"
             android:label="@string/title_activity_quick_access" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

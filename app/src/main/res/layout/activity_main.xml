@@ -18,58 +18,54 @@
         app:srcCompat="@drawable/allayance" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="2dp"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Where Everything Made Ez"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="Where Everything Made Ez"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="264dp"
-        android:layout_height="117dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="@font/open_sans_semibold"
         android:gravity="center_horizontal"
         android:text="“It's not what we do once in a while that shapes our lives. It's what we do consistently.” ― Anthony Robbins "
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.06999999" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="240dp"
         android:layout_height="27dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="13dp"
         android:fontFamily="@font/open_sans_bold"
         android:gravity="center_horizontal"
         android:text="Striving for consistency "
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintCircleRadius="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.16000003" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
