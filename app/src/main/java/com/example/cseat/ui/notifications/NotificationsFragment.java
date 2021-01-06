@@ -206,8 +206,8 @@ public class NotificationsFragment extends Fragment {
     }
 
     public void change(Bitmap b){
-        Toast.makeText(getActivity(),"fgdfg" ,Toast.LENGTH_LONG).show();
-        pic.setImageBitmap(b);
+        //Toast.makeText(getActivity(),"fgdfg" ,Toast.LENGTH_LONG).show();
+       // pic.setImageBitmap(b);
 
        //
     }
