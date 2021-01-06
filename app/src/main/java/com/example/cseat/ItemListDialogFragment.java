@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
+import com.example.cseat.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +23,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Objects;
 
 /**
  * <p>A fragment that shows a list of items as a modal bottom sheet.</p>
@@ -39,6 +43,7 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
 
     TextView takepic,upload;
     ImageView pic;
+    NotificationsFragment notificationsFragment = new NotificationsFragment();
     static final int REQUEST_IMAGE_CAPTURE = 1;
     // TODO: Customize parameters
     public static ItemListDialogFragment newInstance(int itemCount) {
@@ -60,9 +65,11 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        pic = view.findViewById(R.id.pic);
+        //pic = requireView().findViewById(R.id.pic);
+
         takepic = view.findViewById(R.id.takepic);
         upload = view.findViewById(R.id.upload);
+
         takepic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,13 +98,33 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            pic.setImageBitmap(imageBitmap);
+           // Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
+            //Bundle extras = data.getExtras();
+            //Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            notificationsFragment.change(photo);
+
+
+
             //pic.setImageBitmap(imageBitmap);
             //imageView.setImageBitmap(imageBitmap);
+
+            /*
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+            //to generate random file name
+            String fileName = "tempimg.jpg";
+
+            try {
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                //captured image set in imageview
+                pic.setImageBitmap(photo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
 
         }
     }

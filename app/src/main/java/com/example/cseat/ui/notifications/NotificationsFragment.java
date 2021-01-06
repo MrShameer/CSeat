@@ -205,17 +205,11 @@ public class NotificationsFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toast.makeText(getActivity(),requestCode + "" + resultCode,Toast.LENGTH_LONG).show();
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            pic.setImageBitmap(imageBitmap);
-            //pic.setImageBitmap(imageBitmap);
-            //imageView.setImageBitmap(imageBitmap);
+    public void change(Bitmap b){
+        Toast.makeText(getActivity(),"fgdfg" ,Toast.LENGTH_LONG).show();
+        pic.setImageBitmap(b);
 
-        }
+       //
     }
 
 
