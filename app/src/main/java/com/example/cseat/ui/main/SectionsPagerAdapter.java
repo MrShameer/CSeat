@@ -1,6 +1,7 @@
 package com.example.cseat.ui.main;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -9,7 +10,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.cseat.R;
+import com.example.cseat.SectionPelajar;
 import com.example.cseat.TabPelajar;
+import com.example.cseat.data.model.SectionMaterials;
+import com.example.cseat.ui.notifications.NotificationsFragment;
+import com.example.cseat.ui.notifications.SectionRPI;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -30,6 +35,18 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
+        Log.d("qwe","in "+position);
+
+        if(position == 0){
+            return new SectionPelajar();
+        }
+        else if (position == 1){
+            return new SectionRPI();
+        }
+        else if (position == 2){
+            return  new SectionMaterials();
+        }
+
         return PlaceholderFragment.newInstance(position + 1);
     }
 

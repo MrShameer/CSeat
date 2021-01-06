@@ -130,7 +130,9 @@ public class NotificationsFragment extends Fragment {
                 //fragment.show(getActivity().getSupportFragmentManager(), "TAG");
 
                 ItemListDialogFragment bottomSheet = new ItemListDialogFragment();
-                bottomSheet.show(getActivity().getSupportFragmentManager(), "TAG");
+                bottomSheet.show(getChildFragmentManager(), "TAG");
+
+                //bottomSheet.show(getChildFragmentManager(), "TAG");
 
                /* Fragment fragment = new BottomSheetDialogFragment();
                 fragment.setArguments(arguments);
@@ -139,6 +141,8 @@ public class NotificationsFragment extends Fragment {
                         .commit();*/
 
                 //BottomSheetDialogFragment ModalBottomSheetDialogFragment.Builder() .add(R.layout.fragment_item_list_dialog_list_dialog) .show(childFragmentManager, "my_bottom_sheet")
+
+                //return inflater.inflate(R.layout.fragment_item_list_dialog_list_dialog, container, false)
 
                 
             }
@@ -149,8 +153,10 @@ public class NotificationsFragment extends Fragment {
             public void onClick(View v) {
                 String eu=uname.getText().toString(), ep=phone.getText().toString();
                 //connect firebase laa
-                if(!eu.equals(u) && !u.isEmpty() && u.length()>4){
-                    myRef.child("Username").setValue(eu);
+                if(u.length()>4){
+                    if(!eu.equals(u)){
+                        myRef.child("Username").setValue(eu);
+                    }
                 }
                 else{
                     uname.setError("Must not be empty & Must be more than 5 Character");

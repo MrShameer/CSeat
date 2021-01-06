@@ -26,14 +26,24 @@
         android:name="com.example.cseat.AboutUs"
         android:label="ABOUT US"
         tools:layout="@layout/fragment_about_us" />
-    <activity
-        android:id="@+id/tabpelajar"
-        android:name="com.example.cseat.Pelajar"
-        android:label="activity_pelajar"
-        tools:layout="@layout/activity_pelajar" />
     <fragment
         android:id="@+id/tabPelajar2"
         android:name="com.example.cseat.TabPelajar"
         android:label="PELAJAR"
         tools:layout="@layout/fragment_tab_pelajar2" />
+    <fragment
+        android:id="@+id/sectionPelajar"
+        android:name="com.example.cseat.SectionPelajar"
+        android:label="fragment_section_pelajar"
+        tools:layout="@layout/fragment_section_pelajar" />
+    <fragment
+        android:id="@+id/sectionRPI"
+        android:name="com.example.cseat.ui.notifications.SectionRPI"
+        android:label="fragment_section_r_p_i"
+        tools:layout="@layout/fragment_section_r_p_i" />
+    <fragment
+        android:id="@+id/sectionMaterials"
+        android:name="com.example.cseat.data.model.SectionMaterials"
+        android:label="fragment_section_materials"
+        tools:layout="@layout/fragment_section_materials" />
 </navigation>

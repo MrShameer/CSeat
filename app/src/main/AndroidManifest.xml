@@ -18,10 +18,6 @@
             android:name=".RegisterActivity"
             android:theme="@style/Theme.CSeat.NoActionBar"/>
         <activity
-            android:name=".Pelajar"
-            android:label="@string/title_activity_pelajar"
-            android:theme="@style/Theme.CSeat.NoActionBar" />
-        <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
