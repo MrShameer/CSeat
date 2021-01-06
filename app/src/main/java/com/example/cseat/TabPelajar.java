@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.cseat.ui.main.SectionsPagerAdapter;
 
@@ -96,5 +97,7 @@ public class TabPelajar extends Fragment {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = getView().findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        Toast.makeText(getActivity(),"dfgdfgdf",Toast.LENGTH_SHORT).show();
     }
 }

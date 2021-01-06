@@ -33,7 +33,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        Log.d("qwe","in "+position);
+
+        //Log.d("qwe","in "+position);
 
         if(position == 0){
             return new SectionPelajar();
@@ -46,6 +47,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         }
 
         return PlaceholderFragment.newInstance(position + 1);
+        //return new SectionPelajar();
     }
 
     @Nullable
