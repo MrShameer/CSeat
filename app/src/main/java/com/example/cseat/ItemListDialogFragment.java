@@ -45,9 +45,11 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        final RecyclerView recyclerView = (RecyclerView) view;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ItemAdapter(getArguments().getInt(ARG_ITEM_COUNT)));
+        super.onViewCreated(view, savedInstanceState);
+        //final RecyclerView recyclerView = (RecyclerView) view;
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //recyclerView.setAdapter(new ItemAdapter(getArguments().getInt(ARG_ITEM_COUNT)));
+
         //recyclerView.setAdapter(new ItemAdapter(getArguments().));
     }
 

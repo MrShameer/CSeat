@@ -136,11 +136,16 @@ public class NotificationsFragment extends Fragment {
                 //BottomSheetDialogFragment bottomSheetFragment = new ItemListDialogFragment();
                 //bottomSheetFragment.show(getFragmentManager(), "TAG");
 
+                /*
                 Bundle args = new Bundle();
                 args.putString("ARG_ITEM_COUNT", "3");
                 BottomSheetDialogFragment newFragment = new ItemListDialogFragment();
                 newFragment.setArguments(args);
                 newFragment.show(getActivity().getSupportFragmentManager(), "TAG");
+
+                 */
+
+                ItemListDialogFragment.newInstance(30).show(getActivity().getSupportFragmentManager(), "dialog");
 
                 //bottomSheet.show(getChildFragmentManager(), "TAG");
 
