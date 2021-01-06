@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -129,8 +130,17 @@ public class NotificationsFragment extends Fragment {
                 //ItemListDialogFragment fragment = new ItemListDialogFragment();
                 //fragment.show(getActivity().getSupportFragmentManager(), "TAG");
 
-                ItemListDialogFragment bottomSheet = new ItemListDialogFragment();
-                bottomSheet.show(getChildFragmentManager(), "TAG");
+                //BottomSheetDialogFragment bottomSheet = new ItemListDialogFragment();
+                //bottomSheet.show(getActivity().getSupportFragmentManager(), "TAG");
+
+                //BottomSheetDialogFragment bottomSheetFragment = new ItemListDialogFragment();
+                //bottomSheetFragment.show(getFragmentManager(), "TAG");
+
+                Bundle args = new Bundle();
+                args.putString("ARG_ITEM_COUNT", "3");
+                BottomSheetDialogFragment newFragment = new ItemListDialogFragment();
+                newFragment.setArguments(args);
+                newFragment.show(getActivity().getSupportFragmentManager(), "TAG");
 
                 //bottomSheet.show(getChildFragmentManager(), "TAG");
 

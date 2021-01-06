@@ -51,7 +51,7 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
         //recyclerView.setAdapter(new ItemAdapter(getArguments().));
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder {
+    private static class ViewHolder extends RecyclerView.ViewHolder {
 
         final TextView text;
 
@@ -62,7 +62,7 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
         }
     }
 
-    private class ItemAdapter extends RecyclerView.Adapter<ViewHolder> {
+    private static class ItemAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         private final int mItemCount;
 
