@@ -7,6 +7,17 @@
     android:background="#212121"
     tools:context=".ui.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STUDENT"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <HorizontalScrollView
         android:layout_width="753dp"
         android:layout_height="202dp"
@@ -23,6 +34,7 @@
     </HorizontalScrollView>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
         android:layout_width="0dp"
         android:layout_height="159dp"
         android:layout_marginTop="50dp"
