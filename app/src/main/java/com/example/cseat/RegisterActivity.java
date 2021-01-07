@@ -49,6 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         mLoadingBar=new ProgressDialog(RegisterActivity.this);
 
+
+
         if(!getIntent().getStringExtra("enable").equals("yes")){
             email.setEnabled(false);
             email.setText(getIntent().getStringExtra("enable"));
@@ -56,6 +58,18 @@ public class RegisterActivity extends AppCompatActivity {
 
             info.setVisibility(View.INVISIBLE);
             acc.setVisibility(View.INVISIBLE);
+
+
+
+            //MASALAH SINIIII
+                DatabaseReference myRef = database.getReference("Users/"+mAuth.getCurrentUser().getUid());
+
+                //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
+
+                myRef.child("Email").setValue(email.getText().toString());
+                myRef.child("Username").setValue(username.getText().toString());
+                myRef.child("Phone").setValue("");
+
 
         }
         else{
@@ -105,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     Toast.makeText(RegisterActivity.this,task + "",Toast.LENGTH_SHORT).show();
                     if(task.isSuccessful()){
-                        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         Toast.makeText(RegisterActivity.this,"Successfully Registered",Toast.LENGTH_SHORT).show();
                         mLoadingBar.dismiss();
                         DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());

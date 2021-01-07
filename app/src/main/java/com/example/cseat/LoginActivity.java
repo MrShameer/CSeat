@@ -26,6 +26,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,10 +163,20 @@ public class LoginActivity extends AppCompatActivity {
                 //FirebaseUser us = mAuth.getCurrentUser();
                 //user.getEmail();
 
+               // DatabaseReference myRef = database.getReference("Users/"+user.getUid());
+
+                //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
+
+              //  myRef.child("Email").setValue(account.getEmail());
+              //  myRef.child("Username").setValue(account.getDisplayName());
+              //  myRef.child("Phone").setValue("");
+
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 intent.putExtra("enable", account.getEmail());
                 intent.putExtra("name", account.getDisplayName());
                 startActivity(intent);
+
+
 
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
