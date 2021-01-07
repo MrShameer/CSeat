@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("enable", "no");
+                intent.putExtra("enable", "yes");
                 startActivity(intent);
                 //startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }

@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         mLoadingBar=new ProgressDialog(RegisterActivity.this);
 
-        if(getIntent().getStringExtra("enable")!="no"){
+        if(!getIntent().getStringExtra("enable").equals("yes")){
             email.setEnabled(false);
             email.setText(getIntent().getStringExtra("enable"));
             username.setText(getIntent().getStringExtra("name"));
@@ -57,6 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
             info.setVisibility(View.INVISIBLE);
             acc.setVisibility(View.INVISIBLE);
 
+        }
+        else{
+            email.setEnabled(true);
         }
         register.setOnClickListener(new View.OnClickListener() {
             @Override
