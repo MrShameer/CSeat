@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView sgup;
+    TextView sgup,forgot;
     EditText email,password;
     Button login;
     private FirebaseAuth mAuth;
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         }*/
 
         sgup = findViewById(R.id.signup);
-
+        forgot= findViewById(R.id.forgotpassword);
         email= findViewById(R.id.textemail);
         password= findViewById(R.id.password);
 
@@ -67,6 +67,14 @@ public class LoginActivity extends AppCompatActivity {
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 //startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, forgotpassword.class);
+                startActivity(intent);
             }
         });
 
