@@ -109,11 +109,12 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
            //Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
             //Bundle extras = data.getExtras();
             //Bitmap imageBitmap = (Bitmap) extras.get("data");
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            //Bitmap photo = (Bitmap) data.getExtras().get("data");
 
            // getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 
-            notificationsFragment.change(photo);
+            //notificationsFragment.change(photo);
+
             //notificationsFragment.change();
 
 

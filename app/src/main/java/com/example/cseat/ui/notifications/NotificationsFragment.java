@@ -214,7 +214,7 @@ public class NotificationsFragment extends Fragment {
         //byte[] byteArray = getArguments().getByteArray("bitmap");
        // Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         //Toast.makeText(getActivity(),pic + "" ,Toast.LENGTH_LONG).show();
-        pic.setImageBitmap(bitmap);
+       // pic.setImageBitmap(bitmap);
 
        //
     }
