@@ -89,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    Toast.makeText(RegisterActivity.this,task + "",Toast.LENGTH_SHORT).show();
                     if(task.isSuccessful()){
                         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
                         Toast.makeText(RegisterActivity.this,"Successfully Registered",Toast.LENGTH_SHORT).show();

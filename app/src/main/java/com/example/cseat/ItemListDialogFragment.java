@@ -37,8 +37,8 @@ import java.util.Objects;
 public class ItemListDialogFragment extends BottomSheetDialogFragment {
 
     // TODO: Customize parameter argument names
-    private static final String ARG_ITEM_COUNT = "item_count";
-    private static final int RESULT_OK = -1;
+    static final String ARG_ITEM_COUNT = "item_count";
+    static final int RESULT_OK = -1;
     // private static final int RESULT_OK = -1;
 
     TextView takepic,upload;
@@ -65,8 +65,10 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //pic = requireView().findViewById(R.id.pic);
-
+        pic = view.findViewById(R.id.pic);
+        if(pic != null){
+            //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
+        }
         takepic = view.findViewById(R.id.takepic);
         upload = view.findViewById(R.id.upload);
 
@@ -78,6 +80,7 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 } catch (ActivityNotFoundException e) {
                     // display error state to the user
+
                 }
             }
         });
@@ -86,7 +89,10 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                //startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
         //final RecyclerView recyclerView = (RecyclerView) view;
@@ -100,15 +106,19 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-           // Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
+           //Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
             //Bundle extras = data.getExtras();
             //Bitmap imageBitmap = (Bitmap) extras.get("data");
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+           // getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
+
             notificationsFragment.change(photo);
+            //notificationsFragment.change();
 
 
 
-            //pic.setImageBitmap(imageBitmap);
+            //pic.setImageBitmap(photo);
             //imageView.setImageBitmap(imageBitmap);
 
             /*
@@ -128,6 +138,7 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
 
         }
     }
+
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
 

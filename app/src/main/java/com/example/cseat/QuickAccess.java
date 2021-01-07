@@ -1,6 +1,8 @@
 package com.example.cseat;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
@@ -28,6 +30,9 @@ public class QuickAccess extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+
+
     }
+
 
 }

@@ -2,6 +2,7 @@ package com.example.cseat.ui.notifications;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,7 +70,9 @@ public class NotificationsFragment extends Fragment {
         pic = root.findViewById(R.id.pic);
         mAuth=FirebaseAuth.getInstance();
 
-
+        if(pic != null){
+            Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
+        }
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,6 +121,7 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        pic = view.findViewById(R.id.pic);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +154,7 @@ public class NotificationsFragment extends Fragment {
 
                  */
 
-                ItemListDialogFragment.newInstance(30).show(getActivity().getSupportFragmentManager(), "dialog");
+                ItemListDialogFragment.newInstance(10).show(getActivity().getSupportFragmentManager(), "dialog");
 
                 //bottomSheet.show(getChildFragmentManager(), "TAG");
 
@@ -205,9 +209,12 @@ public class NotificationsFragment extends Fragment {
         }
     }
 
-    public void change(Bitmap b){
-        //Toast.makeText(getActivity(),"fgdfg" ,Toast.LENGTH_LONG).show();
-       // pic.setImageBitmap(b);
+    public void change(Bitmap bitmap){
+//        pic.getRootView().findViewById(R.id.pic);
+        //byte[] byteArray = getArguments().getByteArray("bitmap");
+       // Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        //Toast.makeText(getActivity(),pic + "" ,Toast.LENGTH_LONG).show();
+        pic.setImageBitmap(bitmap);
 
        //
     }
