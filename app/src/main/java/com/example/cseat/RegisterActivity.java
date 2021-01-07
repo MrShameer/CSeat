@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
-    TextView acc;
+    TextView acc,info;
     private EditText username, email, password, conpass;
     Button register;
     private FirebaseAuth mAuth;
@@ -45,8 +45,19 @@ public class RegisterActivity extends AppCompatActivity {
         conpass=findViewById(R.id.conpassword);
         register=findViewById(R.id.register);
 
+        info=findViewById(R.id.info);
         mAuth=FirebaseAuth.getInstance();
         mLoadingBar=new ProgressDialog(RegisterActivity.this);
+
+        if(getIntent().getStringExtra("enable")!="no"){
+            email.setEnabled(false);
+            email.setText(getIntent().getStringExtra("enable"));
+            username.setText(getIntent().getStringExtra("name"));
+
+            info.setVisibility(View.INVISIBLE);
+            acc.setVisibility(View.INVISIBLE);
+
+        }
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

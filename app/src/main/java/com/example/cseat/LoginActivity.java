@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("enable", "no");
                 startActivity(intent);
                 //startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
@@ -141,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
 
-        Toast.makeText(LoginActivity.this, "sign in" ,Toast.LENGTH_LONG).show();
+        //Toast.makeText(LoginActivity.this, "sign in" ,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -155,11 +156,19 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-                Toast.makeText(LoginActivity.this, "masuk in" ,Toast.LENGTH_LONG).show();
+               // Toast.makeText(LoginActivity.this, "masuk in" ,Toast.LENGTH_LONG).show();
                 firebaseAuthWithGoogle(account.getIdToken());
+                //FirebaseUser us = mAuth.getCurrentUser();
+                //user.getEmail();
+
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.putExtra("enable", account.getEmail());
+                intent.putExtra("name", account.getDisplayName());
+                startActivity(intent);
+
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(LoginActivity.this, task.getException().getMessage() ,Toast.LENGTH_LONG).show();
+                //Toast.makeText(LoginActivity.this, task.getException().getMessage() ,Toast.LENGTH_LONG).show();
                 Log.w(TAG, "Google sign in failed", e);
                 // ...
             }

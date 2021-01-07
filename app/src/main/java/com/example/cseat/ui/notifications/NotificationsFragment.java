@@ -71,7 +71,7 @@ public class NotificationsFragment extends Fragment {
         mAuth=FirebaseAuth.getInstance();
 
         if(pic != null){
-            Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
         }
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +100,7 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
