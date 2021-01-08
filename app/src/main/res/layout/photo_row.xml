@@ -15,6 +15,7 @@
                 android:id="@+id/image_cseat"
                 android:layout_width="175dp"
                 android:layout_height="292dp"
+                android:scaleType="fitCenter"
                 android:verticalScrollbarPosition="right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

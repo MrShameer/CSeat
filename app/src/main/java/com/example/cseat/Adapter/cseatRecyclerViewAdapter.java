@@ -25,7 +25,7 @@ public class cseatRecyclerViewAdapter extends RecyclerView.Adapter<cseatRecycler
     public cseatRecyclerViewAdapter( Context context,List<photocseat> cImages) {
         this.context=context;
         this.cImages=cImages;
-        Toast.makeText(context,"ape tew",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context,"ape tew",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -35,19 +35,19 @@ public class cseatRecyclerViewAdapter extends RecyclerView.Adapter<cseatRecycler
     public cseatRecyclerViewAdapter.cseatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View photo_row=LayoutInflater.from(parent.getContext()).inflate(R.layout.photo_row,null);
         cseatViewHolder ch=new cseatViewHolder(photo_row);
-        Toast.makeText(context,"ape tewwwwwwwwwwwwwwwwww",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"ape tewwwwwwwwwwwwwwwwww",Toast.LENGTH_SHORT).show();
         return ch;
     }
 
     @Override
     public void onBindViewHolder(@NonNull cseatRecyclerViewAdapter.cseatViewHolder holder, int position) {
     holder.imageview.setImageResource(cImages.get(position).getImage());
-        Toast.makeText(context,"ape tewwwwwwwwwwwwwwwwww",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"ape tewwwwwwwwwwwwwwwwww",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public int getItemCount() {
-        Toast.makeText(context,"ape tewwwwwwwwwwwwwwwwww",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context,"ape tewwwwwwwwwwwwwwwwww",Toast.LENGTH_SHORT).show();
         return cImages.size();
     }
 

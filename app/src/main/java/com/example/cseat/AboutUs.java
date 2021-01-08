@@ -71,7 +71,7 @@ LinearLayoutManager linearLayoutManager;
         allPhoto.add(new photocseat(R.drawable.photo7));
         allPhoto.add(new photocseat(R.drawable.photo8));
         allPhoto.add(new photocseat(R.drawable.photo9));
-        Toast.makeText(getActivity(),allPhoto.size()+"",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),allPhoto.size()+"",Toast.LENGTH_SHORT).show();
 
         return allPhoto;
     }
@@ -118,7 +118,7 @@ LinearLayoutManager linearLayoutManager;
         cseatRecyclerViewAdapter cs=new cseatRecyclerViewAdapter(getContext(),nea);
         recyclerView.setAdapter(cs);
 
-        Toast.makeText(getActivity(),"meow",Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(),"meow",Toast.LENGTH_SHORT).show();
 
     }
 
