@@ -91,7 +91,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/open_sans"
         android:text="Forgot Password?"
-        android:textColor="#D8A50C"
+        android:textColor="#ffad42"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SignUp"
-            android:textColor="#EFA331" />
+            android:textColor="#ffad42" />
 
     </LinearLayout>
 

@@ -73,6 +73,7 @@ public class NotificationsFragment extends Fragment {
         if(pic != null){
             //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
         }
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
