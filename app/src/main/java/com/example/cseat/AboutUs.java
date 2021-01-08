@@ -111,13 +111,13 @@ LinearLayoutManager linearLayoutManager;
         super.onViewCreated(view, savedInstanceState);
         List<photocseat>nea=getAllPhotoInfo();
         RecyclerView recyclerView=view.findViewById(R.id.recycler_view);
-
-        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         cseatRecyclerViewAdapter cs=new cseatRecyclerViewAdapter(getContext(),nea);
         recyclerView.setAdapter(cs);
-        //Toast.makeText(getActivity(),nea.size(),Toast.LENGTH_SHORT).show();
+
         Toast.makeText(getActivity(),"meow",Toast.LENGTH_SHORT).show();
 
     }

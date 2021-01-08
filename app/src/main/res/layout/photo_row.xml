@@ -15,11 +15,11 @@
                 android:id="@+id/image_cseat"
                 android:layout_width="175dp"
                 android:layout_height="292dp"
+                android:verticalScrollbarPosition="right"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/photo10"
-                tools:layout_editor_absoluteX="118dp" />
+                app:srcCompat="@drawable/photo10" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
