@@ -2,11 +2,24 @@ package com.example.cseat;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.cseat.Adapter.cseatRecyclerViewAdapter;
+import com.example.cseat.ui.main.SectionsPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +27,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AboutUs extends Fragment {
-
+LinearLayoutManager linearLayoutManager;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,6 +38,7 @@ public class AboutUs extends Fragment {
     private String mParam2;
 
     public AboutUs() {
+
         // Required empty public constructor
     }
 
@@ -46,9 +60,25 @@ public class AboutUs extends Fragment {
         return fragment;
     }
 
+    private List<photocseat> getAllPhotoInfo() {
+        List<photocseat>allPhoto=new ArrayList<photocseat>();
+        allPhoto.add(new photocseat(R.drawable.photo1));
+        allPhoto.add(new photocseat(R.drawable.photo2));
+        allPhoto.add(new photocseat(R.drawable.photo3));
+        allPhoto.add(new photocseat(R.drawable.photo4));
+        allPhoto.add(new photocseat(R.drawable.photo5));
+        allPhoto.add(new photocseat(R.drawable.photo6));
+        allPhoto.add(new photocseat(R.drawable.photo7));
+        allPhoto.add(new photocseat(R.drawable.photo8));
+        allPhoto.add(new photocseat(R.drawable.photo9));
+        Toast.makeText(getActivity(),allPhoto.size()+"",Toast.LENGTH_SHORT).show();
+
+        return allPhoto;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -58,7 +88,40 @@ public class AboutUs extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_about_us, container, false);
+        //List<photocseat> allphotoinfo=getAllPhotoInfo();
+
+        //cseatRecyclerViewAdapter cseatadapter=new cseatRecyclerViewAdapter(getActivity(),allphotoinfo);
+        //Toast.makeText(getActivity(),allphotoinfo.size(),Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_about_us, container, false);
+
     }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        List<photocseat>nea=getAllPhotoInfo();
+        RecyclerView recyclerView=view.findViewById(R.id.recycler_view);
+
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity());
+        recyclerView.setHasFixedSize(true);
+
+        cseatRecyclerViewAdapter cs=new cseatRecyclerViewAdapter(getContext(),nea);
+        recyclerView.setAdapter(cs);
+        //Toast.makeText(getActivity(),nea.size(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"meow",Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
 }

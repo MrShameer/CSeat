@@ -1,28 +1,38 @@
 package com.example.cseat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.cseat.Adapter.cseatRecyclerViewAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //startActivity(new Intent(MainActivity.this, LoginActivity.class));
         (new Handler()).postDelayed(this::run, 3000);
         //startActivity(new Intent(MainActivity.this, ItemListDialogFragment.class));
         //startActivity(new Intent(MainActivity.this, Pelajar.class));
+
     }
+
 
     void run(){
         Intent i;
