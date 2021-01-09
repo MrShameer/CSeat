@@ -18,15 +18,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseUser user;
     LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        user = FirebaseAuth.getInstance().getCurrentUser();
         //startActivity(new Intent(MainActivity.this, LoginActivity.class));
         (new Handler()).postDelayed(this::run, 3000);
         //startActivity(new Intent(MainActivity.this, ItemListDialogFragment.class));

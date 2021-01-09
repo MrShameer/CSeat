@@ -39,9 +39,13 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
    // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    FirebaseUser currentUser;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInAccount account;
+
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         mLoadingBar=new ProgressDialog(LoginActivity.this);
 
-
+        intent = new Intent(LoginActivity.this, QuickAccess.class);
 
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -140,9 +144,12 @@ public class LoginActivity extends AppCompatActivity {
 
                // Toast.makeText(LoginActivity.this,"masuk task",Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(LoginActivity.this, QuickAccess.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+
+                if(task.isSuccessful()){
+                    // Intent intent = new Intent(LoginActivity.this, QuickAccess.class);
+                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                     //startActivity(intent);
+                }
 
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
@@ -161,6 +168,11 @@ public class LoginActivity extends AppCompatActivity {
         //Toast.makeText(LoginActivity.this,idToken+"iddd",Toast.LENGTH_SHORT).show();
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         // mAuth.signInWi
+        mLoadingBar.setTitle("Login");
+        mLoadingBar.setMessage("Jap eh nk check. Sat nanti i bagitau");
+        mLoadingBar.setCanceledOnTouchOutside(false);
+        mLoadingBar.show();
+
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -169,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                            //   Log.d(TAG, "signInWithCredential:success");
                             //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            currentUser = mAuth.getCurrentUser();
                             // Toast.makeText(LoginActivity.this,"Successfully Regisfdgdftered",Toast.LENGTH_SHORT).show();
                             //mLoadingBar.dismiss();
                             DatabaseReference myRef = database.getReference("Users/"+currentUser.getUid());
@@ -187,6 +199,19 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+
+//prob siniiiiiiii tak bole intent and database satu masa
+
+        if(currentUser!=null){
+            mLoadingBar.dismiss();
+            startActivity(intent);
+        }
+
+
+
+
+
     }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

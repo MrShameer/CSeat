@@ -91,6 +91,7 @@ public class NotificationsFragment extends Fragment {
                 Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+
         //String v = myRef.child("Username").getValue
 
        // uname.setText(v);
@@ -103,7 +104,6 @@ public class NotificationsFragment extends Fragment {
             public void onClick(View v) {
                 //FirebaseAuth.getInstance().signOut();
                 mAuth.signOut();
-
 
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -120,6 +120,8 @@ public class NotificationsFragment extends Fragment {
 
         return root;
     }
+
+
 
 
 
