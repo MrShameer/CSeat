@@ -38,9 +38,10 @@ public class LoginActivity extends AppCompatActivity {
     Button login,google,facebbok;
     private FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+   // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     GoogleSignInClient mGoogleSignInClient;
+    GoogleSignInAccount account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+        mAuth = FirebaseAuth.getInstance();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,22 +123,67 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void firebaseAuthWithGoogle(String idToken) {
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+               // Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
+                firebaseAuthWithGoogle(account.getIdToken(),account);
+
+               // Toast.makeText(LoginActivity.this,"masuk task",Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(LoginActivity.this, QuickAccess.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+               // Log.w(TAG, "Google sign in failed", e);
+
+                // [START_EXCLUDE]
+               // updateUI(null);
+                // [END_EXCLUDE]
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(String idToken, GoogleSignInAccount acc) {
         // [START_EXCLUDE silent]
         // [END_EXCLUDE]
+        //Toast.makeText(LoginActivity.this,idToken+"iddd",Toast.LENGTH_SHORT).show();
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        // mAuth.signInWi
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                           //   Log.d(TAG, "signInWithCredential:success");
+                            //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            // Toast.makeText(LoginActivity.this,"Successfully Regisfdgdftered",Toast.LENGTH_SHORT).show();
+                            //mLoadingBar.dismiss();
+                            DatabaseReference myRef = database.getReference("Users/"+currentUser.getUid());
+                            //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
+                            myRef.child("Email").setValue(acc.getEmail());
+                            myRef.child("Username").setValue(acc.getDisplayName());
+                            myRef.child("Phone").setValue("");
+
+                            Toast.makeText(LoginActivity.this,"Sign In Successful",Toast.LENGTH_SHORT).show();
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(LoginActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            //Log.w(TAG, "signInWithCredential:failure", task.getException());
                         }
                     }
                 });
@@ -145,46 +193,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
 
         //Toast.makeText(LoginActivity.this, "sign in" ,Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //Toast.makeText(LoginActivity.this, "masukkk in" ,Toast.LENGTH_LONG).show();
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-               // Toast.makeText(LoginActivity.this, "masuk in" ,Toast.LENGTH_LONG).show();
-                firebaseAuthWithGoogle(account.getIdToken());
-                //FirebaseUser us = mAuth.getCurrentUser();
-                //user.getEmail();
-
-               // DatabaseReference myRef = database.getReference("Users/"+user.getUid());
-
-                //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
-
-              //  myRef.child("Email").setValue(account.getEmail());
-              //  myRef.child("Username").setValue(account.getDisplayName());
-              //  myRef.child("Phone").setValue("");
-
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                intent.putExtra("enable", account.getEmail());
-                intent.putExtra("name", account.getDisplayName());
-                startActivity(intent);
-
-
-
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                //Toast.makeText(LoginActivity.this, task.getException().getMessage() ,Toast.LENGTH_LONG).show();
-                Log.w(TAG, "Google sign in failed", e);
-                // ...
-            }
-        }
     }
 
     private void checkCredentials() {

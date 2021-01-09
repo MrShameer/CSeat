@@ -35,6 +35,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,10 +50,10 @@ public class NotificationsFragment extends Fragment {
     Boolean editing=false;
     Button logout,edit,save;
     EditText uname,emil,phone;
-    FirebaseAuth mAuth;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
+   private FirebaseAuth mAuth;
+   private  FirebaseDatabase database = FirebaseDatabase.getInstance();
+   private  FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private  DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
     String u,e,p;
 
     ImageView pic;
@@ -69,7 +70,7 @@ public class NotificationsFragment extends Fragment {
         phone=root.findViewById(R.id.phoneno);
         pic = root.findViewById(R.id.pic);
         mAuth=FirebaseAuth.getInstance();
-
+        //Toast.makeText(getActivity(),currentFirebaseUser.getProviderId(),Toast.LENGTH_SHORT).show();
         if(pic != null){
             //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
         }
@@ -100,8 +101,9 @@ public class NotificationsFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                //FirebaseAuth.getInstance().signOut();
                 mAuth.signOut();
+
 
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

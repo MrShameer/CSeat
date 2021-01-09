@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.example.cseat.Adapter.cseatRecyclerViewAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     void run(){
+//        Toast.makeText(MainActivity.this,user.getUid(),Toast.LENGTH_SHORT).show();
         Intent i;
         if(user !=null) {
             i = new Intent(MainActivity.this, QuickAccess.class);
         } else {
+           // FirebaseAuth.getInstance().signOut();
             i = new Intent(MainActivity.this, LoginActivity.class);
         }
 

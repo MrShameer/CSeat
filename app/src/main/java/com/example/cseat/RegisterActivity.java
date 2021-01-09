@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         mLoadingBar=new ProgressDialog(RegisterActivity.this);
 
 
+        /*
 
         if(!getIntent().getStringExtra("enable").equals("yes")){
             email.setEnabled(false);
@@ -62,19 +63,22 @@ public class RegisterActivity extends AppCompatActivity {
 
 
             //MASALAH SINIIII
-                DatabaseReference myRef = database.getReference("Users/"+mAuth.getCurrentUser().getUid());
-
+                //DatabaseReference myRef = database.getReference("Users/"+mAuth.getCurrentUser().getUid());
+           // DatabaseReference myRef = database.getReference("Users/"+getIntent().getStringExtra("uid"));
                 //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
 
-                myRef.child("Email").setValue(email.getText().toString());
-                myRef.child("Username").setValue(username.getText().toString());
-                myRef.child("Phone").setValue("");
+               // myRef.child("Email").setValue(email.getText().toString());
+               // myRef.child("Username").setValue(username.getText().toString());
+                //myRef.child("Phone").setValue("");
 
 
         }
         else{
             email.setEnabled(true);
         }
+
+        */
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    Toast.makeText(RegisterActivity.this,task + "",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RegisterActivity.this,task + "",Toast.LENGTH_SHORT).show();
                     if(task.isSuccessful()){
                         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                         Toast.makeText(RegisterActivity.this,"Successfully Registered",Toast.LENGTH_SHORT).show();

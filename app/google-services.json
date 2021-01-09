@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "769800186033-r21v5g8d2tf3snmouio5b0pf8s89kd7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cseat",
+            "certificate_hash": "9b80b43183bb509d10ddf0dd4fce08945f8920d9"
+          }
+        },
+        {
           "client_id": "769800186033-o8f613sm4k6mopfoijp0tv1hbdalo1m3.apps.googleusercontent.com",
           "client_type": 3
         }
