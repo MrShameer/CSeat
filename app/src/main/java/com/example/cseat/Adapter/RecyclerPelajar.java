@@ -21,7 +21,7 @@ public class RecyclerPelajar extends RecyclerView.Adapter<RecyclerPelajar.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-       Log.i(TAG, "onCreateViewHolder: " + count++);
+       //Log.i(TAG, "onCreateViewHolder: " + count++);
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.pelajar_row, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
