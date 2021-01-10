@@ -56,6 +56,7 @@ public class NotificationsFragment extends Fragment {
     private  DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
     String u,e,p;
 
+
     ImageView pic;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class NotificationsFragment extends Fragment {
         if(pic != null){
             //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
         }
-
+      //  edit.setBackground(getResources().getDrawable(R.drawable.btn_bg));
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

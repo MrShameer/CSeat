@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
@@ -184,11 +186,23 @@ public class LoginActivity extends AppCompatActivity {
                             currentUser = mAuth.getCurrentUser();
                             // Toast.makeText(LoginActivity.this,"Successfully Regisfdgdftered",Toast.LENGTH_SHORT).show();
                             //mLoadingBar.dismiss();
-                            DatabaseReference myRef = database.getReference("Users/"+currentUser.getUid());
-                            //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
-                            myRef.child("Email").setValue(acc.getEmail());
-                            myRef.child("Username").setValue(acc.getDisplayName());
-                            myRef.child("Phone").setValue("");
+                            if(task.getResult().getAdditionalUserInfo().isNewUser()){
+                                DatabaseReference myRef = database.getReference("Users/"+currentUser.getUid());
+                                //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
+                                myRef.child("Email").setValue(acc.getEmail());
+                                myRef.child("Username").setValue(acc.getDisplayName());
+                                myRef.child("Phone").setValue("").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        run();
+                                    }
+                                });
+                            }
+                            else{
+                                run();
+                            }
+
+
 
                             Toast.makeText(LoginActivity.this,"Sign In Successful",Toast.LENGTH_SHORT).show();
 
@@ -202,16 +216,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
 //prob siniiiiiiii tak bole intent and database satu masa
+       // (new Handler()).postDelayed(this::run, 3000);
 
-        if(currentUser!=null){
-            mLoadingBar.dismiss();
-            startActivity(intent);
-        }
+    }
 
-
-
-
-
+    void run(){
+        mLoadingBar.dismiss();
+        startActivity(intent);
     }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
