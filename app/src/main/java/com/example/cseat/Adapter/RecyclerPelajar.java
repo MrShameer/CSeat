@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cseat.QuickAccess;
@@ -24,10 +25,16 @@ public class RecyclerPelajar extends RecyclerView.Adapter<RecyclerPelajar.ViewHo
     int count = 0;
     List<String> studentsname, studentclass, studentproblem;
 
+    boolean isexpand;
+
+   // ViewHolder vh;
+
     public RecyclerPelajar(List<String> studentsname, List<String> studentclass, List<String> studentproblem) {
         this.studentsname = studentsname;
         this.studentclass = studentclass;
         this.studentproblem= studentproblem;
+        isexpand = false;
+
     }
 
     @NonNull
@@ -44,9 +51,12 @@ public class RecyclerPelajar extends RecyclerView.Adapter<RecyclerPelajar.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+      //  vh=holder;
         holder.rctv.setText(studentsname.get(position));
         holder.textView.setText(studentclass.get(position));
         holder.power.setText(studentproblem.get(position));
+
+        holder.expand.setVisibility(isexpand ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -55,9 +65,10 @@ public class RecyclerPelajar extends RecyclerView.Adapter<RecyclerPelajar.ViewHo
         return studentsname.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView textView, rctv,power;
+        ConstraintLayout expand,cl;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -65,16 +76,19 @@ public class RecyclerPelajar extends RecyclerView.Adapter<RecyclerPelajar.ViewHo
             textView = itemView.findViewById(R.id.tvclass);
             rctv =(TextView) itemView.findViewById(R.id.rctv);
             power = itemView.findViewById(R.id.power);
+            expand = itemView.findViewById(R.id.expandableLayout);
+            cl = itemView.findViewById(R.id.cl);
 
+            cl.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                public void onClick(View v) {
 
-            itemView.setOnClickListener(this);
+                     isexpand = !isexpand;
+                    // vh.expand.setVisibility(View.GONE);
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            //Toast.makeText(QuickAccess.this,"dfd",Toast.LENGTH_SHORT).show();
-
-            //Log.d("tekan","sfgdg");
-        }
     }
 }
