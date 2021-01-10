@@ -1,5 +1,8 @@
 package com.example.cseat;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,11 +15,19 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.cseat.Adapter.cseatRecyclerViewAdapter;
 import com.example.cseat.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +38,16 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class AboutUs extends Fragment {
+
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
+    String u;
+    ImageButton facebook;
+    ImageButton gmail;
+    ImageButton phone;
+
 LinearLayoutManager linearLayoutManager;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +59,7 @@ LinearLayoutManager linearLayoutManager;
     private String mParam2;
 
     public AboutUs() {
-
+        mAuth=FirebaseAuth.getInstance();
         // Required empty public constructor
     }
 
@@ -83,27 +104,35 @@ LinearLayoutManager linearLayoutManager;
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                u=snapshot.child("Username").getValue(String.class);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_us, container, false);
-        //List<photocseat> allphotoinfo=getAllPhotoInfo();
 
-        //cseatRecyclerViewAdapter cseatadapter=new cseatRecyclerViewAdapter(getActivity(),allphotoinfo);
-        //Toast.makeText(getActivity(),allphotoinfo.size(),Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-        // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_about_us, container, false);
 
     }
+
 
 
     @Override
@@ -117,6 +146,47 @@ LinearLayoutManager linearLayoutManager;
 
         cseatRecyclerViewAdapter cs=new cseatRecyclerViewAdapter(getContext(),nea);
         recyclerView.setAdapter(cs);
+
+
+
+
+        facebook= getActivity().findViewById(R.id.btn_facebook);
+        gmail= getActivity().findViewById(R.id.btn_google);
+        phone= getActivity().findViewById(R.id.btn_phone);
+
+
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.facebook.com/cseatbangiofficial/?ref=page_internal"));
+                startActivity(intent);
+            }
+        });
+
+
+
+        gmail.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent1=new Intent(Intent.ACTION_SENDTO);
+                intent1.setType("text/plain");
+                intent1.setData(Uri.parse("mailto:cseat.bangi@gmail.com"));
+                 startActivity(intent1);
+
+            }
+        });
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callintent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:014244135"));
+                startActivity(callintent);
+            }
+        });
 
        // Toast.makeText(getActivity(),"meow",Toast.LENGTH_SHORT).show();
 
