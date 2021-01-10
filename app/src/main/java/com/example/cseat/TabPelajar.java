@@ -93,11 +93,13 @@ public class TabPelajar extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getActivity().getSupportFragmentManager());
-        ViewPager viewPager = getView().findViewById(R.id.view_pager);
+        ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = getView().findViewById(R.id.tabs);
+        TabLayout tabs =view.findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
+        //viewPager.setCurrentItem(2);
+       // viewPager.setCurrentItem(0);
         //Toast.makeText(getActivity(),"dfgdfgdf",Toast.LENGTH_SHORT).show();
+
     }
 }
