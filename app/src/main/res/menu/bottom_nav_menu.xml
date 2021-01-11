@@ -3,14 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/tabPelajar2"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Pelajar" />
-    <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="Profile" />
-    <item
         android:id="@+id/abu"
         android:icon="@drawable/ic_baseline_info_24"
         android:title="@string/about_us" />
@@ -18,5 +10,13 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Student" />
+    <item
+        android:id="@+id/tabPelajar2"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Learning System" />
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile" />
 
 </menu>
