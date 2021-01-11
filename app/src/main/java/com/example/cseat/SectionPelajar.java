@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cseat.Adapter.RecyclerPelajar;
+import com.example.cseat.Adapter.RecyclerRPI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +46,10 @@ public class SectionPelajar extends Fragment {
     RecyclerView recv;
     RecyclerPelajar recyclerPelajar;
 
-    List<String> studentsname, studentclass, studentproblem;
+    StudentData studentData = StudentData.getInstance();
+    //List<String> studentsname, studentclass, studentwork;
+
+   // public List<String> studentsname, studentclass, studentproblem;
 
     public SectionPelajar() {
         // Required empty public constructor
@@ -78,14 +82,14 @@ public class SectionPelajar extends Fragment {
         }
 
 
-        studentsname = new ArrayList<>();
-        studentclass = new ArrayList<>();
-        studentproblem = new ArrayList<>();
+     //   studentsname = new ArrayList<>();
+     //   studentclass = new ArrayList<>();
+     //   studentproblem = new ArrayList<>();
 
 
 
 
-
+/*
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Students");
         ref.addListenerForSingleValueEvent(
@@ -109,8 +113,10 @@ public class SectionPelajar extends Fragment {
                         //handle databaseError
                     }
                 });
+*/
 
-        recyclerPelajar = new RecyclerPelajar(studentsname,studentclass,studentproblem);
+        //recyclerPelajar = new RecyclerPelajar(studentsname,studentclass,studentproblem);
+        recyclerPelajar= new RecyclerPelajar(studentData.getStudentsname(),studentData.getStudentclass(),studentData.getStudentpower());
 
 
 
@@ -138,25 +144,8 @@ public class SectionPelajar extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recv.addItemDecoration(dividerItemDecoration);
 
+
     }
 
 
-
-
-    private void collect(Map<String, Object> value) {
-
-        //ArrayList<Long> phoneNumbers = new ArrayList<>();
-
-            //iterate through each user, ignoring their UID
-            for (Map.Entry<String, Object> entry : value.entrySet()){
-
-                //Get user map
-                Map singleUser = (Map) entry.getValue();
-                //Get phone field and append to list
-                studentsname.add(singleUser.toString());
-
-            }
-
-            //System.out.println(phoneNumbers.toString());
-    }
 }

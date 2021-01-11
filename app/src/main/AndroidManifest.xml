@@ -27,7 +27,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".QuickAccess"
-            android:label="@string/title_activity_quick_access" />
+            android:label="@string/title_activity_quick_access"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
