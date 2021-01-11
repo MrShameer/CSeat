@@ -5,16 +5,26 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cseat.Adapter.RecyclerPelajar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +45,7 @@ public class SectionPelajar extends Fragment {
     RecyclerView recv;
     RecyclerPelajar recyclerPelajar;
 
-    List<String> studentslist;
+    List<String> studentsname, studentclass, studentproblem;
 
     public SectionPelajar() {
         // Required empty public constructor
@@ -66,6 +76,46 @@ public class SectionPelajar extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        studentsname = new ArrayList<>();
+        studentclass = new ArrayList<>();
+        studentproblem = new ArrayList<>();
+
+
+
+
+
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Students");
+        ref.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //Get map of users in datasnapshot
+                        for(DataSnapshot ds : dataSnapshot.getChildren()){
+                            studentsname.add(ds.getKey());
+                            studentclass.add(ds.child("Class").getValue(String.class));
+                            studentproblem.add(ds.child("Problem").getValue(String.class));
+                            // dataSnapshot.child("Class");
+                        }
+                        //studentsname.add(dataSnapshot.getChildren().toString());
+                      //  Log.d(studentclass.toString(), "stu");
+                        // collect((Map<String,Object>) dataSnapshot.getChildren());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //handle databaseError
+                    }
+                });
+
+        recyclerPelajar = new RecyclerPelajar(studentsname,studentclass,studentproblem);
+
+
+
+
+
     }
 
     @Override
@@ -82,10 +132,31 @@ public class SectionPelajar extends Fragment {
        // studentslist = new
 
         recv = view.findViewById(R.id.recv);
-        recyclerPelajar = new RecyclerPelajar();
-
-       // recv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recv.setAdapter(recyclerPelajar);
+       // recv.setLayoutManager(new LinearLayoutManager(getContext()));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        recv.addItemDecoration(dividerItemDecoration);
+
+    }
+
+
+
+
+    private void collect(Map<String, Object> value) {
+
+        //ArrayList<Long> phoneNumbers = new ArrayList<>();
+
+            //iterate through each user, ignoring their UID
+            for (Map.Entry<String, Object> entry : value.entrySet()){
+
+                //Get user map
+                Map singleUser = (Map) entry.getValue();
+                //Get phone field and append to list
+                studentsname.add(singleUser.toString());
+
+            }
+
+            //System.out.println(phoneNumbers.toString());
     }
 }
