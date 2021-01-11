@@ -2,6 +2,7 @@ package com.example.cseat.ui.main;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
@@ -46,8 +47,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             return  new SectionMaterials();
         }
 
-        return PlaceholderFragment.newInstance(position + 1);
+        return SectionPelajar.newInstance("","");
         //return new SectionPelajar();
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return super.getItemPosition(object);
+
     }
 
     @Nullable

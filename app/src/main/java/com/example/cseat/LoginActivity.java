@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -30,6 +33,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,7 +52,10 @@ public class LoginActivity extends AppCompatActivity {
     Button login,google,facebbok;
     private FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
-   // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef;
+
+    // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     FirebaseUser currentUser;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -164,6 +179,44 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
+    }
+
+    Bitmap bmp;
+    private class LoadProfileImage extends AsyncTask<String, Void, Bitmap> {
+
+
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+               // e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+
+            bmp=result;
+        }}
+
     private void firebaseAuthWithGoogle(String idToken, GoogleSignInAccount acc) {
         // [START_EXCLUDE silent]
         // [END_EXCLUDE]
@@ -191,6 +244,26 @@ public class LoginActivity extends AppCompatActivity {
                                 //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
                                 myRef.child("Email").setValue(acc.getEmail());
                                 myRef.child("Username").setValue(acc.getDisplayName());
+                               // storageRef= storage.getReferenceFromUrl("Users/"+currentUser);
+
+                                //storageRef = storage.getReference("Users");
+                             //  ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                                //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                              //  LoadProfileImage loadProfileImage = new LoadProfileImage();
+                               // loadProfileImage.doInBackground(currentUser.getPhotoUrl().toString());
+                               // bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                               // getBitmapFromURL(currentUser.getPhotoUrl().toString()).compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                              // byte[] data = baos.toByteArray();
+                            //   UploadTask uploadTask = (UploadTask) storageRef.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                             //      @Override
+                             //  public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            //        }
+                             //   });
+
+
+
                                 myRef.child("Phone").setValue("").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {

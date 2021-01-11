@@ -37,6 +37,8 @@ import com.example.cseat.ui.main.SectionsPagerAdapter;
  */
 public class TabPelajar extends Fragment {
 
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -92,11 +94,14 @@ public class TabPelajar extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getActivity().getSupportFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getChildFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
+      viewPager.setOffscreenPageLimit(3);
+       // viewPager.setCurrentItem(0);
         TabLayout tabs =view.findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+        //viewPager.refreshDrawableState();
         //viewPager.setCurrentItem(2);
        // viewPager.setCurrentItem(0);
         //Toast.makeText(getActivity(),"dfgdfgdf",Toast.LENGTH_SHORT).show();

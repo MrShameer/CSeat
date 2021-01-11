@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cseat.Adapter.RecyclerPelajar;
+import com.example.cseat.Adapter.RecyclerRPI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +46,10 @@ public class SectionPelajar extends Fragment {
     RecyclerView recv;
     RecyclerPelajar recyclerPelajar;
 
-    List<String> studentsname, studentclass, studentproblem;
+    StudentData studentData = StudentData.getInstance();
+    //List<String> studentsname, studentclass, studentwork;
+
+    public List<String> studentsname, studentclass, studentproblem;
 
     public SectionPelajar() {
         // Required empty public constructor
@@ -85,7 +89,7 @@ public class SectionPelajar extends Fragment {
 
 
 
-
+/*
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Students");
         ref.addListenerForSingleValueEvent(
@@ -109,8 +113,10 @@ public class SectionPelajar extends Fragment {
                         //handle databaseError
                     }
                 });
+*/
 
-        recyclerPelajar = new RecyclerPelajar(studentsname,studentclass,studentproblem);
+        //recyclerPelajar = new RecyclerPelajar(studentsname,studentclass,studentproblem);
+        recyclerPelajar= new RecyclerPelajar(studentData.getStudentsname(),studentData.getStudentclass(),studentData.getStudentpower());
 
 
 
@@ -137,6 +143,7 @@ public class SectionPelajar extends Fragment {
        // recv.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recv.addItemDecoration(dividerItemDecoration);
+
 
     }
 
