@@ -224,7 +224,7 @@ public class LoginActivity extends AppCompatActivity {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         // mAuth.signInWi
         mLoadingBar.setTitle("Login");
-        mLoadingBar.setMessage("Jap eh nk check. Sat nanti i bagitau");
+        mLoadingBar.setMessage("Please wait while we check your credentials");
         mLoadingBar.setCanceledOnTouchOutside(false);
         mLoadingBar.show();
 

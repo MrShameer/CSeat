@@ -1,5 +1,8 @@
 package com.example.cseat.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +30,7 @@ public class RecyclerMaterial extends RecyclerView.Adapter<RecyclerMaterial.View
         this.url = url;
         this.name = name;
 
-       // Log.d("fromrm", name.toString());
+       //Log.d("fromrm", name.toString());
 
     }
 
@@ -59,11 +62,24 @@ public class RecyclerMaterial extends RecyclerView.Adapter<RecyclerMaterial.View
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView rctv;
         WebView webView;
+
+        ConstraintLayout cl;
+       // private final Context context;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            //context = itemView.getContext();
             rctv =(TextView) itemView.findViewById(R.id.rctv);
             webView = itemView.findViewById(R.id.webView);
+            cl = itemView.findViewById(R.id.cl);
+
+            cl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url.get(getAdapterPosition())));
+                    v.getContext().startActivity(browserIntent);
+                }
+            });
+
         }
     }
 }

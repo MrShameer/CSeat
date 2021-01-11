@@ -46,4 +46,19 @@
         android:name="com.example.cseat.SectionMaterials"
         android:label="fragment_section_materials"
         tools:layout="@layout/fragment_section_materials" />
+    <activity
+        android:id="@+id/forgotpassword2"
+        android:name="com.example.cseat.forgotpassword"
+        android:label="activity_forgotpassword"
+        tools:layout="@layout/activity_forgotpassword" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.cseat.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.cseat.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

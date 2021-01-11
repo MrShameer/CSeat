@@ -79,7 +79,6 @@ public class TabPelajar extends Fragment {
         }
       //  setContentView(R.layout.activity_pelajar);
 
-
     }
 
     @Override

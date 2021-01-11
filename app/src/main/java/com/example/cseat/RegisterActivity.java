@@ -113,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
         else{
             //register laa
             mLoadingBar.setTitle("Registration");
-            mLoadingBar.setMessage("Jap eh awak");
+            mLoadingBar.setMessage("Please wait while we store your data");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
 

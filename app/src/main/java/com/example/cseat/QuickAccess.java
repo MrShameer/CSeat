@@ -69,8 +69,8 @@ public Material material = Material.getInstance();
 
         mLoadingBar=new ProgressDialog(QuickAccess.this);
 
-        mLoadingBar.setTitle("Login");
-        mLoadingBar.setMessage("Jap eh nk check. Sat nanti i bagitau");
+        mLoadingBar.setTitle("Setting Up");
+        mLoadingBar.setMessage("Please Wait while we fetch data from the server");
         mLoadingBar.setCanceledOnTouchOutside(false);
         mLoadingBar.show();
         //setActionBar(toolbar);

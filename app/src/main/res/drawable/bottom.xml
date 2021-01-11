@@ -4,13 +4,12 @@
         <shape android:shape="rectangle"/>
     </item>
     <item
-        android:bottom="-70dp"
+        android:bottom="-11110dp"
         android:left="-1000dp"
         android:right="-1000dp"
-        android:top="-11110dp">
+        android:top="-70dp">
         <shape android:shape="oval">
             <solid android:color="#FF5722" />
         </shape>
     </item>
-
 </layer-list>

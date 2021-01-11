@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/b1"
+    android:background="@drawable/e1bb6ea17f152b4be291ff2b2761ae4a"
     tools:context=".ui.notifications.NotificationsFragment">
 
     <ImageView
@@ -94,6 +94,7 @@
             android:id="@+id/uname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
             android:ems="10"
             android:enabled="false"
             android:focusable="true"
@@ -127,6 +128,7 @@
             android:id="@+id/phoneno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
             android:ems="10"
             android:enabled="false"
             android:focusable="true"
@@ -158,6 +160,7 @@
             android:id="@+id/editemail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
             android:ems="10"
             android:enabled="false"
             android:focusable="true"
