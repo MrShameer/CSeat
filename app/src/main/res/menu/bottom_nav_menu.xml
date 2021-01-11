@@ -16,10 +16,6 @@
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile" />
     <item
-        android:id="@+id/tb"
-        android:icon="@drawable/ic_baseline_track_changes_24"
-        android:title="Tracker Board" />
-    <item
         android:id="@+id/abu"
         android:icon="@drawable/ic_baseline_info_24"
         android:title="@string/about_us" />
