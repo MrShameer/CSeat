@@ -44,7 +44,7 @@ public class SectionRPI extends Fragment {
     RecyclerRPI recyclerrpi;
 
     StudentData studentData = StudentData.getInstance();
-    List<String> studentsname, studentclass, studentwork;
+  //  List<String> studentsname, studentclass, studentwork;
 
     public SectionRPI() {
         // Required empty public constructor
@@ -76,9 +76,9 @@ public class SectionRPI extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        studentsname = new ArrayList<>();
-        studentclass = new ArrayList<>();
-        studentwork = new ArrayList<>();
+       // studentsname = new ArrayList<>();
+       // studentclass = new ArrayList<>();
+       // studentwork = new ArrayList<>();
 
 /*
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Students");

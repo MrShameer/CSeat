@@ -2,11 +2,17 @@ package com.example.cseat;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +31,12 @@ import java.util.List;
 
 public class QuickAccess extends AppCompatActivity {
 Toolbar toolbar;
+
 public StudentData studentData = StudentData.getInstance();
+public Vid vid = Vid.getInstance();
+public UserData userData = UserData.getInstance();
+
+    List<VideoPlayer> allvideo=new ArrayList<VideoPlayer>();
     List<String> studentsname, studentclass, studentwork, studentpower;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +62,21 @@ public StudentData studentData = StudentData.getInstance();
         navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> toolbar.setTitle(navController.getCurrentDestination().getLabel()));
+        //toolbar.setForegroundGravity(C);
 
         studentsname= new ArrayList<>();
         studentclass = new ArrayList<>();
         studentwork = new ArrayList<>();
         studentpower = new ArrayList<>();
+
+        allvideo.add(new VideoPlayer("KAEDAH PENGGUNAAN “TOKEN BOARD”","https://www.youtube.com/watch?v=G-CBEVmJ3Ko"));
+        allvideo.add(new VideoPlayer("KAEDAH BERCERITA “SOCIAL STORIES”","https://www.youtube.com/watch?v=fBTjo6Q_jCc"));
+        allvideo.add(new VideoPlayer("KAEDAH MENUNGGU GILIRAN “WAIT”","https://www.youtube.com/watch?v=ChHO5TaoVHU"));
+        allvideo.add(new VideoPlayer("RUTIN KE TANDAS “TOILET ROUTINE”","https://www.youtube.com/watch?v=NaMXypwkMjE"));
+        allvideo.add(new VideoPlayer("SOKONGAN VISUAL “VISUAL AID”","https://www.youtube.com/watch?v=xB29qZRNOPQ"));
+        allvideo.add(new VideoPlayer("KAEDAH PEMBELAJARAN “TEACHING METHODS”","https://www.youtube.com/watch?v=FgipMaVckbA"));
+
+        vid.setAllvideo(allvideo);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Students");
         ref.addListenerForSingleValueEvent(
@@ -68,7 +89,7 @@ public StudentData studentData = StudentData.getInstance();
                             studentsname.add(ds.getKey());
                             studentclass.add(ds.child("Class").getValue(String.class));
                             studentpower.add(ds.child("Problem").getValue(String.class));
-                            studentwork.add(ds.child("Work").getValue(String.class).replaceAll(",","/n"));
+                            studentwork.add(ds.child("Work").getValue(String.class).replaceAll(",","\n"));
                             // dataSnapshot.child("Class");
                         }
 
@@ -84,9 +105,24 @@ public StudentData studentData = StudentData.getInstance();
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                         //handle databaseError
+                        Toast.makeText(QuickAccess.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
 
+       DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Users/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userData.setUname(snapshot.child("Username").getValue(String.class));
+                userData.setEmail(snapshot.child("Email").getValue(String.class));
+                userData.setPhone(snapshot.child("Phone").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(QuickAccess.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }

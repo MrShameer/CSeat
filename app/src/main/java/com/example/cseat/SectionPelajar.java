@@ -49,7 +49,7 @@ public class SectionPelajar extends Fragment {
     StudentData studentData = StudentData.getInstance();
     //List<String> studentsname, studentclass, studentwork;
 
-    public List<String> studentsname, studentclass, studentproblem;
+   // public List<String> studentsname, studentclass, studentproblem;
 
     public SectionPelajar() {
         // Required empty public constructor
@@ -82,9 +82,9 @@ public class SectionPelajar extends Fragment {
         }
 
 
-        studentsname = new ArrayList<>();
-        studentclass = new ArrayList<>();
-        studentproblem = new ArrayList<>();
+     //   studentsname = new ArrayList<>();
+     //   studentclass = new ArrayList<>();
+     //   studentproblem = new ArrayList<>();
 
 
 
@@ -148,22 +148,4 @@ public class SectionPelajar extends Fragment {
     }
 
 
-
-
-    private void collect(Map<String, Object> value) {
-
-        //ArrayList<Long> phoneNumbers = new ArrayList<>();
-
-            //iterate through each user, ignoring their UID
-            for (Map.Entry<String, Object> entry : value.entrySet()){
-
-                //Get user map
-                Map singleUser = (Map) entry.getValue();
-                //Get phone field and append to list
-                studentsname.add(singleUser.toString());
-
-            }
-
-            //System.out.println(phoneNumbers.toString());
-    }
 }

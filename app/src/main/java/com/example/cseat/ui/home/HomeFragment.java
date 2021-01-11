@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cseat.Adapter.videoRecyclerView;
 import com.example.cseat.R;
+import com.example.cseat.StudentData;
+import com.example.cseat.Vid;
 import com.example.cseat.VideoPlayer;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    Vid vid= Vid.getInstance();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<VideoPlayer> Videoplayerlist=getallVideoInfor();
+        //List<VideoPlayer> Videoplayerlist=getallVideoInfor();
 
 
         RecyclerView recyclerView=getView().findViewById(R.id.recycler_view);
@@ -51,10 +54,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        videoRecyclerView videoRecyclerView=new videoRecyclerView(getContext(),Videoplayerlist);
+        videoRecyclerView videoRecyclerView=new videoRecyclerView(getContext(),vid.getAllvideo());
         recyclerView.setAdapter(videoRecyclerView);
     }
 
+
+    /*
     private List<VideoPlayer> getallVideoInfor() {
         List<VideoPlayer>allvideo=new ArrayList<VideoPlayer>();
 
@@ -66,7 +71,7 @@ public class HomeFragment extends Fragment {
        allvideo.add(new VideoPlayer("KAEDAH PEMBELAJARAN “TEACHING METHODS”","https://www.youtube.com/watch?v=FgipMaVckbA"));
 
         return allvideo;
-    }
+    }*/
 
     private String getPackageName() {
         return getPackageName();

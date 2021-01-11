@@ -30,6 +30,8 @@ import com.example.cseat.LoginActivity;
 import com.example.cseat.QuickAccess;
 import com.example.cseat.R;
 import com.example.cseat.RegisterActivity;
+import com.example.cseat.StudentData;
+import com.example.cseat.UserData;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -55,7 +57,7 @@ public class NotificationsFragment extends Fragment {
    private  FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private  DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
     String u,e,p;
-
+    UserData userData = UserData.getInstance();
 
     ImageView pic;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -76,6 +78,8 @@ public class NotificationsFragment extends Fragment {
             //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
         }
       //  edit.setBackground(getResources().getDrawable(R.drawable.btn_bg));
+
+        /*
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -92,6 +96,10 @@ public class NotificationsFragment extends Fragment {
                 Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+        */
+        uname.setText(userData.getUname());
+        emil.setText(userData.getEmail());
+        phone.setText(userData.getPhone());
 
         //String v = myRef.child("Username").getValue
 
