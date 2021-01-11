@@ -9,6 +9,40 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="411dp"
+        android:layout_height="167dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="#937308"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="Pusat Jagaan Autism CSEAT (CSEAT Bangi) adalah sebuah pusat jagaan dan pendidikan untuk anak-anak berkeperluan khas (Autisme) yang sudah beroperasi sejak Mei 2018, terletak di Seksyen 3, Bandar Baru Bangi. CSEAT menyediakan program berteraskan kemahiran untuk pelajar remaja dan program intervensi awal (EIP) untuk pelajar kanak-kanak."
+                android:textAlignment="center"
+                android:textColor="#B0FBF6F6"
+                android:textSize="16dp"
+                android:textStyle="normal|bold|italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.473" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="409dp"
@@ -95,39 +129,5 @@
             app:layout_constraintTop_toTopOf="@+id/btn_google" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="411dp"
-        android:layout_height="167dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="#937308"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:text="Pusat Jagaan Autism CSEAT (CSEAT Bangi) adalah sebuah pusat jagaan dan pendidikan untuk anak-anak berkeperluan khas (Autisme) yang sudah beroperasi sejak Mei 2018, terletak di Seksyen 3, Bandar Baru Bangi. CSEAT menyediakan program berteraskan kemahiran untuk pelajar remaja dan program intervensi awal (EIP) untuk pelajar kanak-kanak."
-                android:textAlignment="center"
-                android:textColor="#B0FBF6F6"
-                android:textSize="16dp"
-                android:textStyle="normal|bold|italic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.473" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
