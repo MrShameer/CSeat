@@ -97,7 +97,9 @@ public class TabPelajar extends Fragment {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getChildFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-      viewPager.setOffscreenPageLimit(3);
+
+     viewPager.setOffscreenPageLimit(3);
+
        // viewPager.setCurrentItem(0);
         TabLayout tabs =view.findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);

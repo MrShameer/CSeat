@@ -1,14 +1,18 @@
 package com.example.cseat;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,6 +22,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,9 +42,17 @@ Toolbar toolbar;
 public StudentData studentData = StudentData.getInstance();
 public Vid vid = Vid.getInstance();
 public UserData userData = UserData.getInstance();
+public Material material = Material.getInstance();
 
     List<VideoPlayer> allvideo=new ArrayList<VideoPlayer>();
     List<String> studentsname, studentclass, studentwork, studentpower;
+    List<String> url=new ArrayList<String>(),name = new ArrayList<String>();
+    TextView textView;
+    ProgressDialog mLoadingBar;
+
+   // FirebaseStorage storage = FirebaseStorage.getInstance();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +65,14 @@ public UserData userData = UserData.getInstance();
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         toolbar = findViewById(R.id.toolbar);
+        textView = findViewById(R.id.tool);
+
+        mLoadingBar=new ProgressDialog(QuickAccess.this);
+
+        mLoadingBar.setTitle("Login");
+        mLoadingBar.setMessage("Jap eh nk check. Sat nanti i bagitau");
+        mLoadingBar.setCanceledOnTouchOutside(false);
+        mLoadingBar.show();
         //setActionBar(toolbar);
         //this.setSupportActionBar(toolbar);
         //setActionBar(toolbar);
@@ -61,8 +84,31 @@ public UserData userData = UserData.getInstance();
 
         navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
 
-        navController.addOnDestinationChangedListener((controller, destination, arguments) -> toolbar.setTitle(navController.getCurrentDestination().getLabel()));
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> textView.setText(navController.getCurrentDestination().getLabel()));
         //toolbar.setForegroundGravity(C);
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        StorageReference reference = storageRef.child("Materials/");
+
+       reference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+           @Override
+           public void onSuccess(ListResult listResult) {
+               for(StorageReference fileRef : listResult.getItems()) {
+                   // TODO: Download the file using its reference (fileRef)
+                  // Log.d("filee", fileRef.getName());
+
+                   url.add(fileRef.getDownloadUrl().toString());
+
+                   name.add(fileRef.getName());
+
+               }
+
+               material.setName(name);
+               material.setUrl(url);
+               //Toast.makeText(QuickAccess.this,material.getName().toString(),Toast.LENGTH_SHORT).show();
+               mLoadingBar.dismiss();
+           }
+       });
 
         studentsname= new ArrayList<>();
         studentclass = new ArrayList<>();
@@ -123,6 +169,9 @@ public UserData userData = UserData.getInstance();
                 Toast.makeText(QuickAccess.this,error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
 
 
     }

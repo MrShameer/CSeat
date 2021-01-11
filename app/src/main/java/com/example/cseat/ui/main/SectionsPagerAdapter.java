@@ -44,7 +44,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             return new SectionRPI();
         }
         else if (position == 2){
-            return  new SectionMaterials();
+            return new SectionMaterials();
         }
 
         return SectionPelajar.newInstance("","");

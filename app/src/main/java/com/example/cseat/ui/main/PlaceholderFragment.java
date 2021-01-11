@@ -43,7 +43,7 @@ public class PlaceholderFragment extends Fragment {
         }
         pageViewModel.setIndex(index);
         //Toast.makeText(getActivity(),index,Toast.LENGTH_SHORT).show();
-        Log.d("asd","gfd"+index);
+        //Log.d("asd","gfd"+index);
     }
 
     @Override

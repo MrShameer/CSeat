@@ -2,11 +2,23 @@ package com.example.cseat;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.cseat.Adapter.RecyclerMaterial;
+import com.example.cseat.Adapter.RecyclerRPI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +36,10 @@ public class SectionMaterials extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    RecyclerView recv;
+    RecyclerMaterial recyclerMaterial;
+
+    Material material = Material.getInstance();
     public SectionMaterials() {
         // Required empty public constructor
     }
@@ -53,6 +69,11 @@ public class SectionMaterials extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+       // Toast.makeText(getContext(), material.getName().toString(), Toast.LENGTH_LONG);
+        Log.d("mattt",material.getName().toString());
+        recyclerMaterial = new RecyclerMaterial(material.getUrl(),material.getName());
+      //  Toast.makeText(getActivity().this,material.getUrl().toString(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -60,5 +81,17 @@ public class SectionMaterials extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_section_materials, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recv = view.findViewById(R.id.recv);
+        recv.setAdapter(recyclerMaterial);
+       // Log.d(material.getName().toString(),"namee");
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        recv.addItemDecoration(dividerItemDecoration);
+
     }
 }
