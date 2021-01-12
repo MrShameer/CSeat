@@ -62,7 +62,7 @@ private Context context;
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView rctv;
-        WebView webView;
+       // WebView webView;
 
         ConstraintLayout cl;
        // private final Context context;
@@ -70,7 +70,7 @@ private Context context;
             super(itemView);
             //context = itemView.getContext();
             rctv =(TextView) itemView.findViewById(R.id.rctv);
-            webView = itemView.findViewById(R.id.webView);
+           // webView = itemView.findViewById(R.id.webView);
             cl = itemView.findViewById(R.id.cl);
 
             cl.setOnClickListener(new View.OnClickListener() {
