@@ -8,12 +8,12 @@
         android:title="@string/about_us" />
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="Home" />
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="Learning System" />
     <item
         android:id="@+id/tabPelajar2"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Learning System" />
+        android:icon="@drawable/ic_baseline_local_library_24"
+        android:title="Student" />
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_baseline_person_24"
