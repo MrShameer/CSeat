@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "GoogleActivity";
     TextView sgup,forgot;
     EditText email,password;
-    Button login,google,facebbok;
+    Button login,google,facebbok,guest;
     private FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
         google=findViewById(R.id.google);
         facebbok=findViewById(R.id.facebook);
+        guest=findViewById(R.id.asguest);
 
         login=findViewById(R.id.login);
         mAuth=FirebaseAuth.getInstance();
@@ -138,7 +139,14 @@ public class LoginActivity extends AppCompatActivity {
         facebbok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(LoginActivity.this,"This feature is not implemented yet",Toast.LENGTH_LONG).show();
+            }
+        });
 
+        guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, Guest.class));
             }
         });
 

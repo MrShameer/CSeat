@@ -9,13 +9,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="8dp"
+        app:cardBackgroundColor="#00FFFFFF">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#535252">
+            android:background="#2FD10047">
 
             <ImageView
                 android:id="@+id/imageView2"
