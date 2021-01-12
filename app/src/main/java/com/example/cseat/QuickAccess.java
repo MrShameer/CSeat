@@ -70,7 +70,7 @@ public Material material = Material.getInstance();
         toolbar = findViewById(R.id.toolbar);
         textView = findViewById(R.id.tool);
 
-        ActivityNavigator.applyPopAnimationsToPendingTransition(this);
+        //ActivityNavigator.applyPopAnimationsToPendingTransition(this);
 
         mLoadingBar=new ProgressDialog(QuickAccess.this);
 
