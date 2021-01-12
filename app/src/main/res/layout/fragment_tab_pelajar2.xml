@@ -11,13 +11,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
         android:theme="@style/Theme.CSeat.AppBarOverlay">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="#FF5722"
+            app:tabIndicatorColor="#D10047"
             app:tabIndicatorHeight="5sp"
             app:tabTextColor="#FFFFFF" />
     </com.google.android.material.appbar.AppBarLayout>

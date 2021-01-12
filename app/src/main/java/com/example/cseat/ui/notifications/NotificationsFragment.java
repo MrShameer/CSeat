@@ -107,6 +107,9 @@ public class NotificationsFragment extends Fragment {
         //System.out.println(myRef);
 
         //Log.d("sd",v);
+        u=userData.getUname();
+        e=userData.getEmail();
+        p=userData.getPhone();
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +149,7 @@ public class NotificationsFragment extends Fragment {
                 editing=true;
                 uname.setEnabled(true);
                 phone.setEnabled(true);
+                Toast.makeText(getActivity(),"You can edit now",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -212,6 +216,7 @@ public class NotificationsFragment extends Fragment {
                 editing=false;
                 uname.setEnabled(false);
                 phone.setEnabled(false);
+                Toast.makeText(getActivity(),"Information Updated",Toast.LENGTH_SHORT).show();
             }
         });
 

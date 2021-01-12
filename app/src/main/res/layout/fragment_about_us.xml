@@ -4,129 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     tools:context=".AboutUs">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="411dp"
-        android:layout_height="167dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans"
+        android:text="OUR SOCIAL"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="#937308"
-                android:gravity="center"
-                android:paddingHorizontal="10dp"
-                android:text="Pusat Jagaan Autism CSEAT (CSEAT Bangi) adalah sebuah pusat jagaan dan pendidikan untuk anak-anak berkeperluan khas (Autisme) yang sudah beroperasi sejak Mei 2018, terletak di Seksyen 3, Bandar Baru Bangi. CSEAT menyediakan program berteraskan kemahiran untuk pelajar remaja dan program intervensi awal (EIP) untuk pelajar kanak-kanak."
-                android:textAlignment="center"
-                android:textColor="#B0FBF6F6"
-                android:textSize="16dp"
-                android:textStyle="normal|bold|italic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.473" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </FrameLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="409dp"
-        android:layout_height="371dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="OUR ACTIVITY"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#937308"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="Pusat Jagaan Autism CSEAT (CSEAT Bangi) adalah sebuah pusat jagaan dan pendidikan untuk anak-anak berkeperluan khas (Autisme) yang sudah beroperasi sejak Mei 2018, terletak di Seksyen 3, Bandar Baru Bangi. CSEAT menyediakan program berteraskan kemahiran untuk pelajar remaja dan program intervensi awal (EIP) untuk pelajar kanak-kanak."
+        android:textAlignment="center"
+        android:textColor="#B0FBF6F6"
+        android:textSize="16dp"
+        android:textStyle="normal|bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans"
-            android:text="OUR SOCIAL"
-            android:textSize="18sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/open_sans"
-            android:gravity="center"
-            android:text="OUR ACTIVITY"
-            android:textSize="18sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.516" />
+    <ImageView
+        android:id="@+id/btn_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_facebook"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_google"
+        app:layout_constraintEnd_toStartOf="@+id/btn_google"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_google" />
 
-        <ImageButton
-            android:id="@+id/btn_phone"
-            android:layout_width="57dp"
-            android:layout_height="57dp"
-            android:background="#FFFFFF"
-            android:src="@drawable/ic_baseline_phone_24"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_google"
-            app:layout_constraintTop_toTopOf="@+id/btn_google" />
+    <ImageView
+        android:id="@+id/btn_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_google"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-        <ImageButton
-            android:id="@+id/btn_google"
-            android:layout_width="57dp"
-            android:layout_height="57dp"
-            android:background="#FFFFFF"
-            android:src="@drawable/ic_google"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView8"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8"
-            app:layout_constraintVertical_bias="0.686" />
-
-        <ImageButton
-            android:id="@+id/btn_facebook"
-            android:layout_width="57dp"
-            android:layout_height="57dp"
-            android:background="#FFFFFF"
-            android:src="@drawable/ic_facebook"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_google"
-            app:layout_constraintEnd_toStartOf="@+id/btn_google"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_google" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/btn_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_phone_24"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_google"
+        app:layout_constraintTop_toTopOf="@+id/btn_google" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

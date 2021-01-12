@@ -2,6 +2,7 @@ package com.example.cseat;
 
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
@@ -70,7 +72,7 @@ public Material material = Material.getInstance();
         mLoadingBar=new ProgressDialog(QuickAccess.this);
 
         mLoadingBar.setTitle("Setting Up");
-        mLoadingBar.setMessage("Please Wait while we fetch data from the server");
+        mLoadingBar.setMessage("Please Wait while we fetch your data from the server");
         mLoadingBar.setCanceledOnTouchOutside(false);
         mLoadingBar.show();
         //setActionBar(toolbar);
@@ -96,8 +98,16 @@ public Material material = Material.getInstance();
                for(StorageReference fileRef : listResult.getItems()) {
                    // TODO: Download the file using its reference (fileRef)
                   // Log.d("filee", fileRef.getName());
+                   fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                       @Override
+                       public void onSuccess(Uri uri) {
+                           url.add(uri.toString());
+                           //Log.d("urll",url.toString());
 
-                   url.add(fileRef.getDownloadUrl().toString());
+                       }
+                   });
+
+                   //url.add(fileRef.getDownloadUrl().toString());
 
                    name.add(fileRef.getName());
 
@@ -107,6 +117,11 @@ public Material material = Material.getInstance();
                material.setUrl(url);
                //Toast.makeText(QuickAccess.this,material.getName().toString(),Toast.LENGTH_SHORT).show();
                mLoadingBar.dismiss();
+           }
+       }).addOnFailureListener(new OnFailureListener() {
+           @Override
+           public void onFailure(@NonNull Exception e) {
+
            }
        });
 

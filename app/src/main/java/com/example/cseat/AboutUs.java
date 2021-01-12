@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.cseat.Adapter.cseatRecyclerViewAdapter;
@@ -39,14 +40,9 @@ import java.util.List;
  */
 public class AboutUs extends Fragment {
 
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    private DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
-    String u;
-    ImageButton facebook;
-    ImageButton gmail;
-    ImageButton phone;
+    ImageView facebook;
+    ImageView gmail;
+    ImageView phone;
 
 LinearLayoutManager linearLayoutManager;
     // TODO: Rename parameter arguments, choose names that match
@@ -59,7 +55,6 @@ LinearLayoutManager linearLayoutManager;
     private String mParam2;
 
     public AboutUs() {
-        mAuth=FirebaseAuth.getInstance();
         // Required empty public constructor
     }
 
@@ -104,18 +99,7 @@ LinearLayoutManager linearLayoutManager;
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                u=snapshot.child("Username").getValue(String.class);
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
 
@@ -167,8 +151,6 @@ LinearLayoutManager linearLayoutManager;
 
 
         gmail.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
 

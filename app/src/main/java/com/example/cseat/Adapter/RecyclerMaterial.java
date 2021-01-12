@@ -1,5 +1,6 @@
 package com.example.cseat.Adapter;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,12 +26,12 @@ import java.util.List;
 
 public class RecyclerMaterial extends RecyclerView.Adapter<RecyclerMaterial.ViewHolder>{
     List<String> url,name;
-
-    public RecyclerMaterial(List<String> url, List<String> name) {
+private Context context;
+    public RecyclerMaterial(List<String> url, List<String> name, Context context) {
         this.url = url;
         this.name = name;
-
-       //Log.d("fromrm", name.toString());
+        this.context = context;
+      // Log.d("fromrm", context.toString());
 
     }
 
@@ -48,13 +49,13 @@ public class RecyclerMaterial extends RecyclerView.Adapter<RecyclerMaterial.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.rctv.setText(name.get(position));
        // Toast.makeText(QuickAccess.this,name.toString(),Toast.LENGTH_SHORT).show();
-        Log.d("fileee",name.get(position));
+      //  Log.d("fileee",name.get(position));
         //holder.webView.loadUrl(url.get(position));
     }
 
     @Override
     public int getItemCount() {
-        Log.d("sizee", name.size()+"");
+       // Log.d("sizee", name.size()+"");
         return name.size();
     }
 
@@ -75,8 +76,12 @@ public class RecyclerMaterial extends RecyclerView.Adapter<RecyclerMaterial.View
             cl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url.get(getAdapterPosition())));
-                    v.getContext().startActivity(browserIntent);
+                   // Intent browserIntent = new Intent(Intent.ACTION_WEB_SEARCH, Uri.parse(url.get(getAdapterPosition())));
+                    Intent browserIntent = new Intent(Intent.ACTION_WEB_SEARCH);
+                    //v.cont.startActivity(browserIntent);
+                    browserIntent.putExtra(SearchManager.QUERY, Uri.parse(url.get(getAdapterPosition())).toString());
+                    //Log.d("fromrm", context.toString());
+                    context.startActivity(browserIntent);
                 }
             });
 

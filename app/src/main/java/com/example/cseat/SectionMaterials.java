@@ -71,8 +71,8 @@ public class SectionMaterials extends Fragment {
         }
        // Toast.makeText(getContext(), material.getName().toString(), Toast.LENGTH_LONG);
         Log.d("mattt",material.getName().toString());
-        recyclerMaterial = new RecyclerMaterial(material.getUrl(),material.getName());
-      //  Toast.makeText(getActivity().this,material.getUrl().toString(), Toast.LENGTH_SHORT).show();
+        recyclerMaterial = new RecyclerMaterial(material.getUrl(),material.getName(),getContext());
+       //Toast.makeText(getActivity(),getContext().toString(), Toast.LENGTH_SHORT).show();
 
     }
 
