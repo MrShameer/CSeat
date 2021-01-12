@@ -30,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ActivityNavigator;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -68,6 +69,8 @@ public Material material = Material.getInstance();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         toolbar = findViewById(R.id.toolbar);
         textView = findViewById(R.id.tool);
+
+        ActivityNavigator.applyPopAnimationsToPendingTransition(this);
 
         mLoadingBar=new ProgressDialog(QuickAccess.this);
 

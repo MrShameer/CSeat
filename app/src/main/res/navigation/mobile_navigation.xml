@@ -17,11 +17,6 @@
         android:label="PROFILE"
         tools:layout="@layout/fragment_notifications" />
     <fragment
-        android:id="@+id/tb"
-        android:name="com.example.cseat.TrackerBoard"
-        android:label="TRACKER BOARD"
-        tools:layout="@layout/fragment_tracker_board" />
-    <fragment
         android:id="@+id/abu"
         android:name="com.example.cseat.AboutUs"
         android:label="ABOUT US"
@@ -61,4 +56,9 @@
         android:name="com.example.cseat.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/registerActivity"
+        android:name="com.example.cseat.RegisterActivity"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
 </navigation>
