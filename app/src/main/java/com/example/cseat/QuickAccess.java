@@ -51,7 +51,7 @@ public Material material = Material.getInstance();
     List<String> url=new ArrayList<String>(),name = new ArrayList<String>();
     TextView textView;
     ProgressDialog mLoadingBar;
-
+    String fn = new String();
    // FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
@@ -108,8 +108,8 @@ public Material material = Material.getInstance();
                    });
 
                    //url.add(fileRef.getDownloadUrl().toString());
-
-                   name.add(fileRef.getName());
+                   fn=fileRef.getName();
+                   name.add(fn.substring(0, fn.lastIndexOf('.')));
 
                }
 

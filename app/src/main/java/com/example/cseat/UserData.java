@@ -1,5 +1,7 @@
 package com.example.cseat;
 
+import android.graphics.Bitmap;
+
 public class UserData {
     private static UserData _instance;
     public static UserData getInstance() {
@@ -13,6 +15,16 @@ public class UserData {
     }
 
     String uname = new String(), email = new String(), phone = new String();
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    Bitmap bitmap = null;
 
     public String getUname() {
         return uname;

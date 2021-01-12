@@ -60,6 +60,7 @@ public class NotificationsFragment extends Fragment {
     UserData userData = UserData.getInstance();
 
     ImageView pic;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
@@ -71,7 +72,7 @@ public class NotificationsFragment extends Fragment {
         uname=root.findViewById(R.id.uname);
         emil=root.findViewById(R.id.editemail);
         phone=root.findViewById(R.id.phoneno);
-        pic = root.findViewById(R.id.pic);
+        //pic = root.findViewById(R.id.pic);
         mAuth=FirebaseAuth.getInstance();
         //Toast.makeText(getActivity(),currentFirebaseUser.getProviderId(),Toast.LENGTH_SHORT).show();
         if(pic != null){
@@ -140,7 +141,14 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        pic = view.findViewById(R.id.pic);
+       pic = view.findViewById(R.id.pic);
+       if(userData.getBitmap()!=null){
+
+           pic.setImageBitmap(userData.getBitmap());
+           //view.invalidate();
+       }
+       // Toast.makeText(getActivity(),"You can edit now",Toast.LENGTH_SHORT).show();
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,6 +208,7 @@ public class NotificationsFragment extends Fragment {
                 if(u.length()>4){
                     if(!eu.equals(u)){
                         myRef.child("Username").setValue(eu);
+                        userData.setUname(eu);
                     }
                 }
                 else{
@@ -208,6 +217,7 @@ public class NotificationsFragment extends Fragment {
 
                 if(!ep.equals(p)){
                     myRef.child("Phone").setValue(ep);
+                    userData.setPhone(ep);
                 }
 
 
@@ -230,15 +240,18 @@ public class NotificationsFragment extends Fragment {
         }
     }
 
-    public void change(Bitmap bitmap){
+    public void change(){
 //        pic.getRootView().findViewById(R.id.pic);
         //byte[] byteArray = getArguments().getByteArray("bitmap");
        // Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         //Toast.makeText(getActivity(),pic + "" ,Toast.LENGTH_LONG).show();
        // pic.setImageBitmap(bitmap);
+       // pic = getView().findViewById(R.id.pic);
+        pic.setImageBitmap(userData.getBitmap());
 
        //
     }
+
 
 
 }

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,6 +14,8 @@ import androidx.annotation.NonNull;
 import com.example.cseat.ui.notifications.NotificationsFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Objects;
 
 /**
@@ -39,11 +45,12 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
     // TODO: Customize parameter argument names
     static final String ARG_ITEM_COUNT = "item_count";
     static final int RESULT_OK = -1;
+    private static final int RESULT_LOAD_IMG = 2;
     // private static final int RESULT_OK = -1;
-
+UserData userData = UserData.getInstance();
     TextView takepic,upload;
     ImageView pic;
-    NotificationsFragment notificationsFragment = new NotificationsFragment();
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
     // TODO: Customize parameters
     public static ItemListDialogFragment newInstance(int itemCount) {
@@ -85,8 +92,17 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
             }
         });
 
-
         upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+            }
+        });
+
+
+   /*     upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -95,6 +111,7 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
                 //startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
+        */
         //final RecyclerView recyclerView = (RecyclerView) view;
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //recyclerView.setAdapter(new ItemAdapter(getArguments().getInt(ARG_ITEM_COUNT)));
@@ -104,13 +121,15 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-           //Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
-            //Bundle extras = data.getExtras();
-            //Bitmap imageBitmap = (Bitmap) extras.get("data");
-            //Bitmap photo = (Bitmap) data.getExtras().get("data");
 
+
+           //Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
+           // Bundle extras = data.getExtras();
+           // Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            userData.setBitmap(photo);
            // getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 
             //notificationsFragment.change(photo);
@@ -138,7 +157,34 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
             }*/
 
         }
+
+
+        if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                //image_view.setImageBitmap(selectedImage);
+               //notificationsFragment.change(selectedImage);
+                userData.setBitmap(selectedImage);
+               //getActivity().getSupportFragmentManager().findFragmentByTag("NotificationFragment").
+
+               //notificationsFragment.change();
+
+            } catch (FileNotFoundException e) {
+                //e.printStackTrace();
+                //Toast.makeText(PostImage.this, "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+
+        }else {
+            //Toast.makeText(PostImage.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
+        }
+
+
+       // NotificationsFragment notificationsFragment =  notificationsFragment = new NotificationsFragment();;
     }
+
+
 
 
     private static class ViewHolder extends RecyclerView.ViewHolder {
