@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 
 import androidx.appcompat.app.ActionBar;
@@ -138,7 +139,11 @@ public Material material = Material.getInstance();
         userpic.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
-                userData.setUrl(task.getResult().toString());
+                if(task.isSuccessful()){
+                    userData.setUrl(task.getResult().toString());
+                }
+
+
             }
         });
 

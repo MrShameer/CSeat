@@ -23,6 +23,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -184,6 +185,23 @@ UserData userData = UserData.getInstance();
             }
 
         }
+
+      // ((NotificationsFragment)get).RefreshProfilePic();
+       // (getFragmentManager().findFragmentById(R.id.navigation_notifications);
+
+      //  FragmentTransaction fr = getFragmentManager().beginTransaction();
+       //fr.replace(R.id.navigation_notifications,new NotificationsFragment());
+      //  fr.commit();
+
+        /*Fragment currentFragment = getFragmentManager().findFragmentByTag("Notification");
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.detach(currentFragment);
+        fragmentTransaction.attach(currentFragment);
+        fragmentTransaction.commit();*/
+
+      //  FragmentManager fm = getActivity().getSupportFragmentManager();
+        //fm.popBackStack();
+
     }
 
 

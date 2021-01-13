@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +74,7 @@ public class NotificationsFragment extends Fragment {
         uname=root.findViewById(R.id.uname);
         emil=root.findViewById(R.id.editemail);
         phone=root.findViewById(R.id.phoneno);
+        pic = root.findViewById(R.id.pic);
         //pic = root.findViewById(R.id.pic);
         mAuth=FirebaseAuth.getInstance();
         //Toast.makeText(getActivity(),currentFirebaseUser.getProviderId(),Toast.LENGTH_SHORT).show();
@@ -136,17 +138,31 @@ public class NotificationsFragment extends Fragment {
     }
 
 
+   public void  RefreshProfilePic() {
+
+       if(userData.getUrl()!= null && !TextUtils.isEmpty(userData.getUrl())){
+           //  Log.d("abuu","fgd");
+           Glide.with(getContext()).load(userData.getUrl()).into(pic);
+
+       }
+       else{
+           pic.setImageResource(R.drawable.allayance);
+       }
+
+    }
+
 
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       pic = view.findViewById(R.id.pic);
-
+      // pic = view.findViewById(R.id.pic);
+        RefreshProfilePic();
            //pic.setImageBitmap(userData.getBitmap());
            //view.invalidate();
-        Glide.with(getContext()).load(userData.getUrl()).into(pic);
+
+
        // Toast.makeText(getActivity(),"You can edit now",Toast.LENGTH_SHORT).show();
 
         edit.setOnClickListener(new View.OnClickListener() {
