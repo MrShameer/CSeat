@@ -197,8 +197,10 @@ public class NotificationsFragment extends Fragment {
                 newFragment.show(getActivity().getSupportFragmentManager(), "TAG");
 
                  */
-
-                ItemListDialogFragment.newInstance(10).show(getActivity().getSupportFragmentManager(), "dialog");
+                //BottomSheetDialogFragment bottomSheetDialogFragment = new ItemListDialogFragment(NotificationsFragment.this);
+              // bottomSheetDialogFragment.show(getActivity().getSupportFragmentManager(), "TAG");
+                Log.d("ablu",getChildFragmentManager()+"");
+                ItemListDialogFragment.newInstance(NotificationsFragment.this).show(getActivity().getSupportFragmentManager(), "dialog");
 
                 //bottomSheet.show(getChildFragmentManager(), "TAG");
 

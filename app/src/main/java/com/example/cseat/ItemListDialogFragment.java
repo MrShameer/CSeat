@@ -64,14 +64,19 @@ UserData userData = UserData.getInstance();
     ImageView pic;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
+
+
     // TODO: Customize parameters
-    public static ItemListDialogFragment newInstance(int itemCount) {
+    public static ItemListDialogFragment newInstance(NotificationsFragment notificationsFragment) {
         final ItemListDialogFragment fragment = new ItemListDialogFragment();
         final Bundle args = new Bundle();
-        args.putInt(ARG_ITEM_COUNT, itemCount);
+        //args.
+       // args.putInt(ARG_ITEM_COUNT, itemCount);
         fragment.setArguments(args);
+        //notificationsFragment.RefreshProfilePic();
         return fragment;
     }
+
 
     @Nullable
     @Override
@@ -83,7 +88,7 @@ UserData userData = UserData.getInstance();
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+    //Log.d("abuu",getChildFragmentManager()+"");
         pic = view.findViewById(R.id.pic);
         if(pic != null){
             //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
