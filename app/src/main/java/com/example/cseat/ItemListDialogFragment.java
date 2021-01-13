@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.example.cseat.ui.notifications.NotificationsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -89,7 +90,7 @@ UserData userData = UserData.getInstance();
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     //Log.d("abuu",getChildFragmentManager()+"");
-        pic = view.findViewById(R.id.pic);
+        pic = getActivity().findViewById(R.id.pic);
         if(pic != null){
             //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
         }
@@ -156,6 +157,8 @@ UserData userData = UserData.getInstance();
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
                             userData.setUrl(task.getResult().toString());
+                            //serData.setUrl(task.getResult().toString());
+                            Glide.with(getActivity()).load(userData.url).into(pic);
                         }
                     });
                 }
@@ -164,7 +167,7 @@ UserData userData = UserData.getInstance();
         }
 
         if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Log.d("qwert","qwert");
+          //  Log.d("qwert","qwert");
 
             try {
 
@@ -179,6 +182,7 @@ UserData userData = UserData.getInstance();
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
                                 userData.setUrl(task.getResult().toString());
+                                Glide.with(getActivity()).load(userData.url).into(pic);
                             }
                         });
                     }
