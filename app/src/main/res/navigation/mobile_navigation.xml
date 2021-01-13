@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.cseat.ui.home.HomeFragment"
-        android:label="HOME"
+        android:label="LEARNING SYSTEM"
         tools:layout="@layout/fragment_main" />
 
     <fragment
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/tabPelajar2"
         android:name="com.example.cseat.TabPelajar"
-        android:label="LEARNING SYSTEM"
+        android:label="STUDENT"
         tools:layout="@layout/fragment_tab_pelajar2" />
     <fragment
         android:id="@+id/sectionPelajar"
