@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,7 +13,14 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 
 import com.example.cseat.ui.notifications.NotificationsFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +39,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
@@ -46,6 +56,7 @@ public class ItemListDialogFragment extends BottomSheetDialogFragment {
     static final String ARG_ITEM_COUNT = "item_count";
     static final int RESULT_OK = -1;
     private static final int RESULT_LOAD_IMG = 2;
+    private static final int PICK_IMAGE_REQUEST = 22;
     // private static final int RESULT_OK = -1;
 UserData userData = UserData.getInstance();
     TextView takepic,upload;
@@ -118,70 +129,61 @@ UserData userData = UserData.getInstance();
 
         //recyclerView.setAdapter(new ItemAdapter(getArguments().));
     }
-
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+    StorageReference userpic = storageRef.child("UserPicture/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
 
-           //Toast.makeText(getActivity(),requestCode + "fgdfg" + resultCode,Toast.LENGTH_LONG).show();
-           // Bundle extras = data.getExtras();
-           // Bitmap imageBitmap = (Bitmap) extras.get("data");
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            userData.setBitmap(photo);
-           // getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 
-            //notificationsFragment.change(photo);
-
-            //notificationsFragment.change();
-
-
-
-            //pic.setImageBitmap(photo);
-            //imageView.setImageBitmap(imageBitmap);
-
-            /*
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-            //to generate random file name
-            String fileName = "tempimg.jpg";
-
-            try {
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-                //captured image set in imageview
-                pic.setImageBitmap(photo);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+            userpic.putBytes(baos.toByteArray()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    userpic.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            userData.setUrl(task.getResult().toString());
+                        }
+                    });
+                }
+            });
 
         }
 
+        if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Log.d("qwert","qwert");
 
-        if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
             try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                //image_view.setImageBitmap(selectedImage);
-               //notificationsFragment.change(selectedImage);
-                userData.setBitmap(selectedImage);
-               //getActivity().getSupportFragmentManager().findFragmentByTag("NotificationFragment").
 
-               //notificationsFragment.change();
+                //Bitmap photo = (Bitmap) data.getExtras().get("data");
+                Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                photo.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+                userpic.putBytes(baos.toByteArray()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        userpic.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                userData.setUrl(task.getResult().toString());
+                            }
+                        });
+                    }
+                });
 
-            } catch (FileNotFoundException e) {
-                //e.printStackTrace();
-                //Toast.makeText(PostImage.this, "Something went wrong", Toast.LENGTH_LONG).show();
+
+            }catch (IOException e){
+                e.printStackTrace();
             }
 
-        }else {
-            //Toast.makeText(PostImage.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
-
-
-       // NotificationsFragment notificationsFragment =  notificationsFragment = new NotificationsFragment();;
     }
 
 

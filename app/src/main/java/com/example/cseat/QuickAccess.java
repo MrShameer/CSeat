@@ -13,8 +13,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.firebase.auth.FirebaseAuth;
@@ -95,6 +97,9 @@ public Material material = Material.getInstance();
 
         StorageReference reference = storageRef.child("Materials/");
 
+
+       // reference.get
+
        reference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
            @Override
            public void onSuccess(ListResult listResult) {
@@ -127,6 +132,17 @@ public Material material = Material.getInstance();
 
            }
        });
+
+        //userpic.getDownloadUrl();
+        StorageReference userpic = storageRef.child("UserPicture/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+        userpic.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                userData.setUrl(task.getResult().toString());
+            }
+        });
+
+
 
         studentsname= new ArrayList<>();
         studentclass = new ArrayList<>();

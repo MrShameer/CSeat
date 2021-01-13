@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.cseat.ItemListDialogFragment;
 import com.example.cseat.LoginActivity;
 import com.example.cseat.QuickAccess;
@@ -142,11 +143,10 @@ public class NotificationsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
        pic = view.findViewById(R.id.pic);
-       if(userData.getBitmap()!=null){
 
-           pic.setImageBitmap(userData.getBitmap());
+           //pic.setImageBitmap(userData.getBitmap());
            //view.invalidate();
-       }
+        Glide.with(getContext()).load(userData.getUrl()).into(pic);
        // Toast.makeText(getActivity(),"You can edit now",Toast.LENGTH_SHORT).show();
 
         edit.setOnClickListener(new View.OnClickListener() {

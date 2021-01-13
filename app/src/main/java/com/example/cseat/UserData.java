@@ -16,6 +16,16 @@ public class UserData {
 
     String uname = new String(), email = new String(), phone = new String();
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    String url = new String();
+
     public Bitmap getBitmap() {
         return bitmap;
     }
