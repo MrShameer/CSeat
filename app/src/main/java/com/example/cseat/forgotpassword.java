@@ -50,15 +50,11 @@ public class forgotpassword extends AppCompatActivity {
                                                 finish();
                                             }
                                             else{
-                                                //email.setError("fgfdgdfMust be a valid email address");
                                                 email.setError(task.getException().getMessage());
                                             }
                                         }
                                     });
                                 }
-
-
-
                             }
                         });
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
@@ -68,8 +64,6 @@ public class forgotpassword extends AppCompatActivity {
                         finish();
                     }
                 });
-
-
                 alertDialog.show();
             }
         });

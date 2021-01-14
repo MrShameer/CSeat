@@ -40,29 +40,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //requestWifi();
         setContentView(R.layout.activity_main);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        //startActivity(new Intent(MainActivity.this, LoginActivity.class));
         (new Handler()).postDelayed(this::run, 3000);
-        //startActivity(new Intent(MainActivity.this, ItemListDialogFragment.class));
-        //startActivity(new Intent(MainActivity.this, Pelajar.class));
-
-
-
-
-
     }
 
-
     void run(){
-//        Toast.makeText(MainActivity.this,user.getUid(),Toast.LENGTH_SHORT).show();
         Intent i;
         if(user !=null) {
             i = new Intent(MainActivity.this, QuickAccess.class);
         } else {
-           // FirebaseAuth.getInstance().signOut();
             i = new Intent(MainActivity.this, LoginActivity.class);
         }
 
@@ -73,11 +60,9 @@ public class MainActivity extends AppCompatActivity {
         boolean connected = false;
         connectivityManager = (ConnectivityManager)getSystemService(this.CONNECTIVITY_SERVICE);
         if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
             connected = true;
             On=true;
             startActivity(i);
-
         }
         else
             connected = false;
@@ -86,16 +71,10 @@ public class MainActivity extends AppCompatActivity {
         if (connected){Toast.makeText(MainActivity.this, "WELCOME", Toast.LENGTH_SHORT).show();}
         else{
             showExplanation(i);
-
             Toast.makeText(MainActivity.this, "No internet", Toast.LENGTH_SHORT).show();}
-
-
-
-        //startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
     private void showExplanation(Intent I) {
-
         AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Wifi/Data Permission");
         builder.setMessage("Most of the Functionalities in this Application Requires Internet Access");
@@ -104,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 wifiManager.setWifiEnabled(true);
                 startActivity(I);
-
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -114,14 +92,8 @@ public class MainActivity extends AppCompatActivity {
                 showExplanation(I);
             }
         });
-
         builder.create();
         builder.show();
-
-
-
-
-
     }
 
 }

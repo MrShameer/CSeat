@@ -56,75 +56,47 @@ public Material material = Material.getInstance();
     TextView textView;
     ProgressDialog mLoadingBar;
     String fn = new String();
-   // FirebaseStorage storage = FirebaseStorage.getInstance();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_access);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.tabPelajar2, R.id.navigation_notifications, R.id.abu)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         toolbar = findViewById(R.id.toolbar);
         textView = findViewById(R.id.tool);
-
-        //ActivityNavigator.applyPopAnimationsToPendingTransition(this);
-
         mLoadingBar=new ProgressDialog(QuickAccess.this);
 
         mLoadingBar.setTitle("Setting Up");
         mLoadingBar.setMessage("Please Wait while we fetch your data from the server");
         mLoadingBar.setCanceledOnTouchOutside(false);
         mLoadingBar.show();
-        //setActionBar(toolbar);
-        //this.setSupportActionBar(toolbar);
-        //setActionBar(toolbar);
-        //setSupportActionBar(toolbar);
-       // setSupportActionBar(toolbar);
-//       NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-       // NavigationUI.setupWithNavController(toolbar,navController,appBarConfiguration);
+
         NavigationUI.setupWithNavController(navView, navController);
-
         navView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> textView.setText(navController.getCurrentDestination().getLabel()));
-        //toolbar.setForegroundGravity(C);
+
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-
         StorageReference reference = storageRef.child("Materials/");
-
-
-       // reference.get
-
-       reference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+        reference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
            @Override
            public void onSuccess(ListResult listResult) {
                for(StorageReference fileRef : listResult.getItems()) {
                    // TODO: Download the file using its reference (fileRef)
-                  // Log.d("filee", fileRef.getName());
                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                        @Override
                        public void onSuccess(Uri uri) {
                            url.add(uri.toString());
-                           //Log.d("urll",url.toString());
-
                        }
                    });
-
-                   //url.add(fileRef.getDownloadUrl().toString());
                    fn=fileRef.getName();
                    name.add(fn.substring(0, fn.lastIndexOf('.')));
 
                }
-
                material.setName(name);
                material.setUrl(url);
-               //Toast.makeText(QuickAccess.this,material.getName().toString(),Toast.LENGTH_SHORT).show();
                mLoadingBar.dismiss();
            }
        }).addOnFailureListener(new OnFailureListener() {
@@ -134,7 +106,6 @@ public Material material = Material.getInstance();
            }
        });
 
-        //userpic.getDownloadUrl();
         StorageReference userpic = storageRef.child("UserPicture/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
         userpic.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
@@ -142,12 +113,8 @@ public Material material = Material.getInstance();
                 if(task.isSuccessful()){
                     userData.setUrl(task.getResult().toString());
                 }
-
-
             }
         });
-
-
 
         studentsname= new ArrayList<>();
         studentclass = new ArrayList<>();
@@ -168,28 +135,20 @@ public Material material = Material.getInstance();
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
-                       // studentData.setStudentsname(dataSnapshot.c);
                         for(DataSnapshot ds : dataSnapshot.getChildren()){
                             studentsname.add(ds.getKey());
                             studentclass.add(ds.child("Class").getValue(String.class));
                             studentpower.add(ds.child("Problem").getValue(String.class));
                             studentwork.add(ds.child("Work").getValue(String.class).replaceAll(",","\n"));
-                            // dataSnapshot.child("Class");
                         }
-
                         studentData.setStudentsname(studentsname);
                         studentData.setStudentclass(studentclass);
                         studentData.setStudentpower(studentpower);
                         studentData.setStudentwork(studentwork);
-                        //studentsname.add(dataSnapshot.getChildren().toString());
-                        //  Log.d(studentclass.toString(), "stu");
-                        // collect((Map<String,Object>) dataSnapshot.getChildren());
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
                         Toast.makeText(QuickAccess.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -208,13 +167,5 @@ public Material material = Material.getInstance();
                 Toast.makeText(QuickAccess.this,error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
-
     }
-
-
-
 }

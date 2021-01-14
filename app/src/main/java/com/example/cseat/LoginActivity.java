@@ -54,9 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog mLoadingBar;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef;
-
-    // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
     FirebaseUser currentUser;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     GoogleSignInClient mGoogleSignInClient;
@@ -67,16 +64,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        /*if(user !=null) {
-            // User is signed in
-            Intent i = new Intent(LoginActivity.this, QuickAccess.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-        } else {
-            // User is signed out
-            //Log.d(TAG, "onAuthStateChanged:signed_out");
-        }*/
 
         sgup = findViewById(R.id.signup);
         forgot= findViewById(R.id.forgotpassword);
@@ -92,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         mLoadingBar=new ProgressDialog(LoginActivity.this);
 
         intent = new Intent(LoginActivity.this, QuickAccess.class);
-
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -241,36 +227,11 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                           //   Log.d(TAG, "signInWithCredential:success");
-                            //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             currentUser = mAuth.getCurrentUser();
-                            // Toast.makeText(LoginActivity.this,"Successfully Regisfdgdftered",Toast.LENGTH_SHORT).show();
-                            //mLoadingBar.dismiss();
                             if(task.getResult().getAdditionalUserInfo().isNewUser()){
                                 DatabaseReference myRef = database.getReference("Users/"+currentUser.getUid());
-                                //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
                                 myRef.child("Email").setValue(acc.getEmail());
                                 myRef.child("Username").setValue(acc.getDisplayName());
-                               // storageRef= storage.getReferenceFromUrl("Users/"+currentUser);
-
-                                //storageRef = storage.getReference("Users");
-                             //  ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-                                //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                              //  LoadProfileImage loadProfileImage = new LoadProfileImage();
-                               // loadProfileImage.doInBackground(currentUser.getPhotoUrl().toString());
-                               // bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                               // getBitmapFromURL(currentUser.getPhotoUrl().toString()).compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                              // byte[] data = baos.toByteArray();
-                            //   UploadTask uploadTask = (UploadTask) storageRef.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                             //      @Override
-                             //  public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            //        }
-                             //   });
-
-
 
                                 myRef.child("Phone").setValue("").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -282,23 +243,14 @@ public class LoginActivity extends AppCompatActivity {
                             else{
                                 run();
                             }
-
-
-
                             Toast.makeText(LoginActivity.this,"Sign In Successful",Toast.LENGTH_SHORT).show();
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                            //Log.w(TAG, "signInWithCredential:failure", task.getException());
                         }
                     }
                 });
-
-
-//prob siniiiiiiii tak bole intent and database satu masa
-       // (new Handler()).postDelayed(this::run, 3000);
-
     }
 
     void run(){
@@ -308,13 +260,10 @@ public class LoginActivity extends AppCompatActivity {
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
-
-        //Toast.makeText(LoginActivity.this, "sign in" ,Toast.LENGTH_LONG).show();
     }
 
     private void checkCredentials() {
-        //try {
-            String em = email.getText().toString(), pass = password.getText().toString();
+        String em = email.getText().toString(), pass = password.getText().toString();
 
         if (em.isEmpty() || !em.contains("@")) {
             email.setError("Must be a valid email address");
@@ -342,9 +291,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
-    //}
-       // catch(Exception e){
-           // return;
-        //}
     }
 }
+
+

@@ -30,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     Button register;
     private FirebaseAuth mAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private ProgressDialog mLoadingBar;
     int c;
     @Override
@@ -48,37 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         info=findViewById(R.id.info);
         mAuth=FirebaseAuth.getInstance();
         mLoadingBar=new ProgressDialog(RegisterActivity.this);
-
-
-        /*
-
-        if(!getIntent().getStringExtra("enable").equals("yes")){
-            email.setEnabled(false);
-            email.setText(getIntent().getStringExtra("enable"));
-            username.setText(getIntent().getStringExtra("name"));
-
-            info.setVisibility(View.INVISIBLE);
-            acc.setVisibility(View.INVISIBLE);
-
-
-
-            //MASALAH SINIIII
-                //DatabaseReference myRef = database.getReference("Users/"+mAuth.getCurrentUser().getUid());
-           // DatabaseReference myRef = database.getReference("Users/"+getIntent().getStringExtra("uid"));
-                //DatabaseReference use = myRef.child(currentFirebaseUser.getUid());
-
-               // myRef.child("Email").setValue(email.getText().toString());
-               // myRef.child("Username").setValue(username.getText().toString());
-                //myRef.child("Phone").setValue("");
-
-
-        }
-        else{
-            email.setEnabled(true);
-        }
-
-        */
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
     }
@@ -111,14 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
             conpass.setError("Password does not match");
         }
         else{
-            //register laa
             mLoadingBar.setTitle("Registration");
             mLoadingBar.setMessage("Please wait while we store your data");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
-
             mAuth.createUserWithEmailAndPassword(em,ps).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     //Toast.makeText(RegisterActivity.this,task + "",Toast.LENGTH_SHORT).show();
@@ -131,12 +95,6 @@ public class RegisterActivity extends AppCompatActivity {
                         myRef.child("Email").setValue(em);
                         myRef.child("Username").setValue(un);
                         myRef.child("Phone").setValue("");
-
-                        //.setValue(un);
-
-                        /*UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(username)
-                                .build();*/
 
                         Intent intent = new Intent(RegisterActivity.this, QuickAccess.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

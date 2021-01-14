@@ -46,7 +46,6 @@ public class AboutUs extends Fragment {
 
 LinearLayoutManager linearLayoutManager;
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -87,37 +86,23 @@ LinearLayoutManager linearLayoutManager;
         allPhoto.add(new photocseat(R.drawable.photo7));
         allPhoto.add(new photocseat(R.drawable.photo8));
         allPhoto.add(new photocseat(R.drawable.photo9));
-        //Toast.makeText(getActivity(),allPhoto.size()+"",Toast.LENGTH_SHORT).show();
-
         return allPhoto;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
-
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about_us, container, false);
-
-
         return inflater.inflate(R.layout.fragment_about_us, container, false);
-
     }
-
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -131,13 +116,9 @@ LinearLayoutManager linearLayoutManager;
         cseatRecyclerViewAdapter cs=new cseatRecyclerViewAdapter(getContext(),nea);
         recyclerView.setAdapter(cs);
 
-
-
-
         facebook= getActivity().findViewById(R.id.btn_facebook);
         gmail= getActivity().findViewById(R.id.btn_google);
         phone= getActivity().findViewById(R.id.btn_phone);
-
 
         facebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,8 +128,6 @@ LinearLayoutManager linearLayoutManager;
                 startActivity(intent);
             }
         });
-
-
 
         gmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,11 +148,5 @@ LinearLayoutManager linearLayoutManager;
                 startActivity(callintent);
             }
         });
-
-       // Toast.makeText(getActivity(),"meow",Toast.LENGTH_SHORT).show();
-
     }
-
-
-
 }

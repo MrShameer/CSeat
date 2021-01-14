@@ -32,7 +32,6 @@ import java.util.List;
 public class SectionRPI extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -44,8 +43,6 @@ public class SectionRPI extends Fragment {
     RecyclerRPI recyclerrpi;
 
     StudentData studentData = StudentData.getInstance();
-  //  List<String> studentsname, studentclass, studentwork;
-
     public SectionRPI() {
         // Required empty public constructor
     }
@@ -75,62 +72,21 @@ public class SectionRPI extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-       // studentsname = new ArrayList<>();
-       // studentclass = new ArrayList<>();
-       // studentwork = new ArrayList<>();
-
-/*
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Students");
-        ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
-                        for(DataSnapshot ds : dataSnapshot.getChildren()){
-                            studentsname.add(ds.getKey());
-                            studentclass.add(ds.child("Class").getValue(String.class));
-                            studentwork.add(ds.child("Work").getValue(String.class).replaceAll(",","/n"));
-                            // dataSnapshot.child("Class");
-                        }
-                        //studentsname.add(dataSnapshot.getChildren().toString());
-                        //  Log.d(studentclass.toString(), "stu");
-                        // collect((Map<String,Object>) dataSnapshot.getChildren());
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-
-
-                    }
-                });
-        */
-
-       // recyclerrpi = new RecyclerRPI(studentsname,studentclass,studentwork);
         recyclerrpi = new RecyclerRPI(studentData.getStudentsname(),studentData.getStudentclass(),studentData.getStudentwork());
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_section_r_p_i, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         recv = view.findViewById(R.id.recv);
         recv.setAdapter(recyclerrpi);
-
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recv.addItemDecoration(dividerItemDecoration);
-
-      //  Toast.makeText(getContext(),studentData.getStudentclass() + "",Toast.LENGTH_SHORT).show();
-
-
     }
 }

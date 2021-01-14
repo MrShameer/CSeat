@@ -60,7 +60,6 @@ public class NotificationsFragment extends Fragment {
     private  DatabaseReference myRef = database.getReference("Users/"+currentFirebaseUser.getUid());
     String u,e,p;
     UserData userData = UserData.getInstance();
-
     ImageView pic;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -75,42 +74,12 @@ public class NotificationsFragment extends Fragment {
         emil=root.findViewById(R.id.editemail);
         phone=root.findViewById(R.id.phoneno);
         pic = root.findViewById(R.id.pic);
-        //pic = root.findViewById(R.id.pic);
+
         mAuth=FirebaseAuth.getInstance();
-        //Toast.makeText(getActivity(),currentFirebaseUser.getProviderId(),Toast.LENGTH_SHORT).show();
-        if(pic != null){
-            //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
-        }
-      //  edit.setBackground(getResources().getDrawable(R.drawable.btn_bg));
-
-        /*
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                u=snapshot.child("Username").getValue(String.class);
-                uname.setText(u);
-                e=snapshot.child("Email").getValue(String.class);
-                emil.setText(e);
-                p=snapshot.child("Phone").getValue(String.class);
-                phone.setText(p);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
         uname.setText(userData.getUname());
         emil.setText(userData.getEmail());
         phone.setText(userData.getPhone());
 
-        //String v = myRef.child("Username").getValue
-
-       // uname.setText(v);
-        //System.out.println(myRef);
-
-        //Log.d("sd",v);
         u=userData.getUname();
         e=userData.getEmail();
         p=userData.getPhone();
@@ -118,7 +87,6 @@ public class NotificationsFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //FirebaseAuth.getInstance().signOut();
                 mAuth.signOut();
 
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -126,29 +94,17 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-     //   notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-         //   @Override
-         //   public void onChanged(@Nullable String s) {
-             //   textView.setText(s);
-           // }
-       // });
-
-
         return root;
     }
 
 
    public void  RefreshProfilePic() {
-
        if(userData.getUrl()!= null && !TextUtils.isEmpty(userData.getUrl())){
-           //  Log.d("abuu","fgd");
            Glide.with(getContext()).load(userData.getUrl()).into(pic);
-
        }
        else{
            pic.setImageResource(R.drawable.allayance);
        }
-
     }
 
 
@@ -157,14 +113,7 @@ public class NotificationsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-      // pic = view.findViewById(R.id.pic);
         RefreshProfilePic();
-           //pic.setImageBitmap(userData.getBitmap());
-           //view.invalidate();
-
-
-       // Toast.makeText(getActivity(),"You can edit now",Toast.LENGTH_SHORT).show();
-
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,41 +129,7 @@ public class NotificationsFragment extends Fragment {
         pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ItemListDialogFragment fragment = new ItemListDialogFragment();
-                //fragment.show(getActivity().getSupportFragmentManager(), "TAG");
-
-                //BottomSheetDialogFragment bottomSheet = new ItemListDialogFragment();
-                //bottomSheet.show(getActivity().getSupportFragmentManager(), "TAG");
-
-                //BottomSheetDialogFragment bottomSheetFragment = new ItemListDialogFragment();
-                //bottomSheetFragment.show(getFragmentManager(), "TAG");
-
-                /*
-                Bundle args = new Bundle();
-                args.putString("ARG_ITEM_COUNT", "3");
-                BottomSheetDialogFragment newFragment = new ItemListDialogFragment();
-                newFragment.setArguments(args);
-                newFragment.show(getActivity().getSupportFragmentManager(), "TAG");
-
-                 */
-                //BottomSheetDialogFragment bottomSheetDialogFragment = new ItemListDialogFragment(NotificationsFragment.this);
-              // bottomSheetDialogFragment.show(getActivity().getSupportFragmentManager(), "TAG");
-              //  Log.d("ablu",getChildFragmentManager()+"");
                 ItemListDialogFragment.newInstance(NotificationsFragment.this).show(getActivity().getSupportFragmentManager(), "dialog");
-
-                //bottomSheet.show(getChildFragmentManager(), "TAG");
-
-               /* Fragment fragment = new BottomSheetDialogFragment();
-                fragment.setArguments(arguments);
-                fm.beginTransaction()
-                        .replace(placeholder, fragment, tabId)
-                        .commit();*/
-
-                //BottomSheetDialogFragment ModalBottomSheetDialogFragment.Builder() .add(R.layout.fragment_item_list_dialog_list_dialog) .show(childFragmentManager, "my_bottom_sheet")
-
-                //return inflater.inflate(R.layout.fragment_item_list_dialog_list_dialog, container, false)
-
-                
             }
         });
 
@@ -222,7 +137,6 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String eu=uname.getText().toString(), ep=phone.getText().toString();
-                //connect firebase laa
                 if(u.length()>4){
                     if(!eu.equals(u)){
                         myRef.child("Username").setValue(eu);
@@ -237,8 +151,6 @@ public class NotificationsFragment extends Fragment {
                     myRef.child("Phone").setValue(ep);
                     userData.setPhone(ep);
                 }
-
-
                 edit.setEnabled(true);
                 save.setEnabled(false);
                 editing=false;
@@ -249,7 +161,6 @@ public class NotificationsFragment extends Fragment {
         });
 
         if(!NotificationsFragment.this.isVisible() && !editing){
-            //Toast.makeText(getActivity(),"Text!",Toast.LENGTH_LONG).show();
             edit.setEnabled(true);
             save.setEnabled(false);
             editing=false;
@@ -259,17 +170,6 @@ public class NotificationsFragment extends Fragment {
     }
 
     public void change(){
-//        pic.getRootView().findViewById(R.id.pic);
-        //byte[] byteArray = getArguments().getByteArray("bitmap");
-       // Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        //Toast.makeText(getActivity(),pic + "" ,Toast.LENGTH_LONG).show();
-       // pic.setImageBitmap(bitmap);
-       // pic = getView().findViewById(R.id.pic);
         pic.setImageBitmap(userData.getBitmap());
-
-       //
     }
-
-
-
 }

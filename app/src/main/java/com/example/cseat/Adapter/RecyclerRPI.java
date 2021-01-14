@@ -20,31 +20,22 @@ import com.example.cseat.TabPelajar;
 import java.util.List;
 
 public class RecyclerRPI extends RecyclerView.Adapter<RecyclerRPI.ViewHolder>{
-
-    int count = 0;
     List<String> studentsname, studentclass, studentwork;
-
     boolean isexpand;
-
-    // ViewHolder vh;
 
     public RecyclerRPI(List<String> studentsname, List<String> studentclass, List<String> studentwork) {
         this.studentsname = studentsname;
         this.studentclass = studentclass;
         this.studentwork= studentwork;
         isexpand = false;
-
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        //  Log.i(TAG, "onCreateViewHolder: " + count++);
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.rpi_row, parent, false);
         RecyclerRPI.ViewHolder viewHolder = new RecyclerRPI.ViewHolder(view);
-
         return viewHolder;
     }
 
@@ -53,7 +44,6 @@ public class RecyclerRPI extends RecyclerView.Adapter<RecyclerRPI.ViewHolder>{
         holder.rctv.setText(studentsname.get(position));
         holder.textView.setText(studentclass.get(position));
         holder.power.setText(studentwork.get(position));
-
         holder.expand.setVisibility(isexpand ? View.VISIBLE : View.GONE);
     }
 
@@ -61,7 +51,6 @@ public class RecyclerRPI extends RecyclerView.Adapter<RecyclerRPI.ViewHolder>{
 
     @Override
     public int getItemCount() {
-
         return studentsname.size();
     }
 
@@ -82,9 +71,7 @@ public class RecyclerRPI extends RecyclerView.Adapter<RecyclerRPI.ViewHolder>{
             cl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     isexpand = !isexpand;
-                    // vh.expand.setVisibility(View.GONE);
                     notifyItemChanged(getAdapterPosition());
                 }
             });

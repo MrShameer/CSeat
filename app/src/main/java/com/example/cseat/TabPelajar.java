@@ -77,16 +77,11 @@ public class TabPelajar extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-      //  setContentView(R.layout.activity_pelajar);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_tab_pelajar2, container, false);
     }
 
@@ -96,16 +91,8 @@ public class TabPelajar extends Fragment {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getChildFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-
      viewPager.setOffscreenPageLimit(3);
-
-       // viewPager.setCurrentItem(0);
         TabLayout tabs =view.findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        //viewPager.refreshDrawableState();
-        //viewPager.setCurrentItem(2);
-       // viewPager.setCurrentItem(0);
-        //Toast.makeText(getActivity(),"dfgdfgdf",Toast.LENGTH_SHORT).show();
-
     }
 }

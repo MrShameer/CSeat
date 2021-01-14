@@ -69,29 +69,21 @@ public class SectionMaterials extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-       // Toast.makeText(getContext(), material.getName().toString(), Toast.LENGTH_LONG);
-        Log.d("mattt",material.getName().toString());
         recyclerMaterial = new RecyclerMaterial(material.getUrl(),material.getName(),getContext());
-       //Toast.makeText(getActivity(),getContext().toString(), Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_section_materials, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         recv = view.findViewById(R.id.recv);
         recv.setAdapter(recyclerMaterial);
-       // Log.d(material.getName().toString(),"namee");
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recv.addItemDecoration(dividerItemDecoration);
-
     }
 }

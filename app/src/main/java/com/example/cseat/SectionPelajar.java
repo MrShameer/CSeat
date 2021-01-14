@@ -35,7 +35,6 @@ import java.util.Map;
 public class SectionPelajar extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -47,10 +46,6 @@ public class SectionPelajar extends Fragment {
     RecyclerPelajar recyclerPelajar;
 
     StudentData studentData = StudentData.getInstance();
-    //List<String> studentsname, studentclass, studentwork;
-
-   // public List<String> studentsname, studentclass, studentproblem;
-
     public SectionPelajar() {
         // Required empty public constructor
     }
@@ -80,72 +75,21 @@ public class SectionPelajar extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-     //   studentsname = new ArrayList<>();
-     //   studentclass = new ArrayList<>();
-     //   studentproblem = new ArrayList<>();
-
-
-
-
-/*
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Students");
-        ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
-                        for(DataSnapshot ds : dataSnapshot.getChildren()){
-                            studentsname.add(ds.getKey());
-                            studentclass.add(ds.child("Class").getValue(String.class));
-                            studentproblem.add(ds.child("Problem").getValue(String.class));
-                            // dataSnapshot.child("Class");
-                        }
-                        //studentsname.add(dataSnapshot.getChildren().toString());
-                      //  Log.d(studentclass.toString(), "stu");
-                        // collect((Map<String,Object>) dataSnapshot.getChildren());
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-                    }
-                });
-*/
-
-        //recyclerPelajar = new RecyclerPelajar(studentsname,studentclass,studentproblem);
         recyclerPelajar= new RecyclerPelajar(studentData.getStudentsname(),studentData.getStudentclass(),studentData.getStudentpower());
-
-
-
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_section_pelajar, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-       // studentslist = new
-
         recv = view.findViewById(R.id.recv);
-
         recv.setAdapter(recyclerPelajar);
-       // recv.setLayoutManager(new LinearLayoutManager(getContext()));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         recv.addItemDecoration(dividerItemDecoration);
-
-
     }
-
-
 }

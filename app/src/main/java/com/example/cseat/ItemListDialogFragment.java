@@ -71,13 +71,9 @@ UserData userData = UserData.getInstance();
     public static ItemListDialogFragment newInstance(NotificationsFragment notificationsFragment) {
         final ItemListDialogFragment fragment = new ItemListDialogFragment();
         final Bundle args = new Bundle();
-        //args.
-       // args.putInt(ARG_ITEM_COUNT, itemCount);
         fragment.setArguments(args);
-        //notificationsFragment.RefreshProfilePic();
         return fragment;
     }
-
 
     @Nullable
     @Override
@@ -89,11 +85,7 @@ UserData userData = UserData.getInstance();
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    //Log.d("abuu",getChildFragmentManager()+"");
         pic = getActivity().findViewById(R.id.pic);
-        if(pic != null){
-            //Toast.makeText(getActivity(), "tk null" ,Toast.LENGTH_LONG).show();
-        }
         takepic = view.findViewById(R.id.takepic);
         upload = view.findViewById(R.id.upload);
 
@@ -104,7 +96,6 @@ UserData userData = UserData.getInstance();
                 try {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 } catch (ActivityNotFoundException e) {
-                    // display error state to the user
 
                 }
             }
@@ -118,34 +109,13 @@ UserData userData = UserData.getInstance();
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
             }
         });
-
-
-   /*     upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                //startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-            }
-        });
-        */
-        //final RecyclerView recyclerView = (RecyclerView) view;
-        //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //recyclerView.setAdapter(new ItemAdapter(getArguments().getInt(ARG_ITEM_COUNT)));
-
-        //recyclerView.setAdapter(new ItemAdapter(getArguments().));
     }
     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
     StorageReference userpic = storageRef.child("UserPicture/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-
-
             Bitmap photo = (Bitmap) data.getExtras().get("data");
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -157,21 +127,15 @@ UserData userData = UserData.getInstance();
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
                             userData.setUrl(task.getResult().toString());
-                            //serData.setUrl(task.getResult().toString());
                             Glide.with(getActivity()).load(userData.url).into(pic);
                         }
                     });
                 }
             });
-
         }
 
         if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK && data != null && data.getData() != null) {
-          //  Log.d("qwert","qwert");
-
             try {
-
-                //Bitmap photo = (Bitmap) data.getExtras().get("data");
                 Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 photo.compress(Bitmap.CompressFormat.JPEG, 20, baos);
@@ -187,39 +151,14 @@ UserData userData = UserData.getInstance();
                         });
                     }
                 });
-
-
             }catch (IOException e){
                 e.printStackTrace();
             }
-
         }
-
-      // ((NotificationsFragment)get).RefreshProfilePic();
-       // (getFragmentManager().findFragmentById(R.id.navigation_notifications);
-
-      //  FragmentTransaction fr = getFragmentManager().beginTransaction();
-       //fr.replace(R.id.navigation_notifications,new NotificationsFragment());
-      //  fr.commit();
-
-        /*Fragment currentFragment = getFragmentManager().findFragmentByTag("Notification");
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.detach(currentFragment);
-        fragmentTransaction.attach(currentFragment);
-        fragmentTransaction.commit();*/
-
-      //  FragmentManager fm = getActivity().getSupportFragmentManager();
-        //fm.popBackStack();
-
     }
 
-
-
-
     private static class ViewHolder extends RecyclerView.ViewHolder {
-
         final TextView text;
-
         ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             // TODO: Customize the item layout
             super(inflater.inflate(R.layout.fragment_item_list_dialog_list_dialog_item, parent, false));
@@ -228,9 +167,7 @@ UserData userData = UserData.getInstance();
     }
 
     private static class ItemAdapter extends RecyclerView.Adapter<ViewHolder> {
-
         private final int mItemCount;
-
         ItemAdapter(int itemCount) {
             mItemCount = itemCount;
         }
@@ -250,7 +187,5 @@ UserData userData = UserData.getInstance();
         public int getItemCount() {
             return mItemCount;
         }
-
     }
-
 }

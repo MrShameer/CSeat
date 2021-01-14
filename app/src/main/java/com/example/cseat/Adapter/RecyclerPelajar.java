@@ -20,47 +20,34 @@ import com.example.cseat.TabPelajar;
 import java.util.List;
 
 public class RecyclerPelajar extends RecyclerView.Adapter<RecyclerPelajar.ViewHolder>{
-
-   // private static final String TAG = "RecyclerAdapter";
-    int count = 0;
     List<String> studentsname, studentclass, studentproblem;
-
     boolean isexpand;
-
-   // ViewHolder vh;
-
     public RecyclerPelajar(List<String> studentsname, List<String> studentclass, List<String> studentproblem) {
         this.studentsname = studentsname;
         this.studentclass = studentclass;
         this.studentproblem= studentproblem;
         isexpand = false;
-
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-     //  Log.i(TAG, "onCreateViewHolder: " + count++);
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.pelajar_row, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-      //  vh=holder;
         holder.rctv.setText(studentsname.get(position));
         holder.textView.setText(studentclass.get(position));
         holder.power.setText(studentproblem.get(position));
-
         holder.expand.setVisibility(isexpand ? View.VISIBLE : View.GONE);
     }
 
     @Override
     public int getItemCount() {
-
         return studentsname.size();
     }
 
@@ -81,13 +68,10 @@ public class RecyclerPelajar extends RecyclerView.Adapter<RecyclerPelajar.ViewHo
             cl.setOnClickListener(new View.OnClickListener() {
                  @Override
                 public void onClick(View v) {
-
                      isexpand = !isexpand;
-                    // vh.expand.setVisibility(View.GONE);
                     notifyItemChanged(getAdapterPosition());
                 }
             });
         }
-
     }
 }
